@@ -1,0 +1,3493 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CICATRIZ: Seu Refúgio Digital para Saúde Mental</title>
+    <meta name="description" content="Plataforma completa de bem-estar mental com ferramentas baseadas em ciência, exercícios terapêuticos e apoio 24/7.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Paleta de cores moderna e terapêutica */
+            --bg-primary: #fafbfc;
+            --bg-secondary: #f8fafc;
+            --surface: #ffffff;
+            --surface-elevated: #ffffff;
+            
+            /* Cores principais - tons mais suaves e terapêuticos */
+            --primary: #6366f1;
+            --primary-light: #a5b4fc;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --secondary-light: #6ee7b7;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            
+            /* Cores de estado */
+            --success: #059669;
+            --warning: #d97706;
+            --error: #dc2626;
+            --info: #0284c7;
+            
+            /* Cores de texto */
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-tertiary: #9ca3af;
+            --text-inverse: #ffffff;
+            
+            /* Cores de borda */
+            --border-light: #e5e7eb;
+            --border-medium: #d1d5db;
+            --border-strong: #9ca3af;
+            
+            /* Sombras */
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-calm: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            
+            /* Fontes */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-serif: 'Crimson Text', serif;
+            
+            /* Espaçamentos */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Bordas */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Transições */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 350ms ease;
+        }
+
+        /* Tema escuro */
+        html[data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --surface: #334155;
+            --surface-elevated: #475569;
+            
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            
+            --border-light: #475569;
+            --border-medium: #64748b;
+            --border-strong: #94a3b8;
+            
+            --primary: #818cf8;
+            --secondary: #34d399;
+        }
+
+        /* Reset e base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+
+        /* Utilitários */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        .container-sm {
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: var(--space-2); }
+        .gap-4 { gap: var(--space-4); }
+        .gap-6 { gap: var(--space-6); }
+        .gap-8 { gap: var(--space-8); }
+
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+        /* Componentes de botão */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-family: var(--font-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--text-inverse);
+            border-color: var(--primary);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface);
+            color: var(--text-primary);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .card-elevated {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-elevated:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Animações */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .glow {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            top: var(--space-4);
+            right: var(--space-4);
+            width: 48px;
+            height: 48px;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .theme-icon {
+            font-size: 1.25rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .theme-toggle:hover .theme-icon {
+            transform: rotate(180deg);
+        }
+
+        .theme-icon-moon { display: none; }
+        html[data-theme="dark"] .theme-icon-sun { display: none; }
+        html[data-theme="dark"] .theme-icon-moon { display: block; }
+
+        /* Header */
+        .header {
+            background: var(--gradient-hero);
+            color: var(--text-inverse);
+            padding: var(--space-20) 0 var(--space-16);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: var(--space-4);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            margin-bottom: var(--space-8);
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .header-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-12);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            font-family: var(--font-display);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-top: var(--space-1);
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            padding: var(--space-4) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover {
+            background: var(--primary);
+            color: var(--text-inverse);
+            transform: translateY(-1px);
+        }
+
+        /* Sections */
+        section {
+            padding: var(--space-20) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-16);
+        }
+
+        .section-title h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+            font-weight: 600;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        /* Progress System */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border-light);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin: var(--space-4) 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            transition: width var(--transition-slow);
+        }
+
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--gradient-secondary);
+            color: var(--text-inverse);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: var(--space-1);
+        }
+
+        /* Emotion Panel */
+        .emotion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .emotion-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emotion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .emotion-card:hover::before {
+            left: 100%;
+        }
+
+        .emotion-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .emotion-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-4);
+            display: block;
+            filter: grayscale(0.3);
+            transition: filter var(--transition-normal);
+        }
+
+        .emotion-card:hover .emotion-icon {
+            filter: grayscale(0);
+        }
+
+        .emotion-title {
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .emotion-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Mood Tracker */
+        .mood-tracker {
+            background: var(--surface);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            margin: var(--space-12) 0;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mood-scale {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+            flex-wrap: wrap;
+        }
+
+        .mood-option {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-full);
+            border: 2px solid var(--border-light);
+            background: var(--surface);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+
+        .mood-option:hover,
+        .mood-option.selected {
+            border-color: var(--primary);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mood-option.selected {
+            background: var(--primary);
+            color: var(--text-inverse);
+        }
+
+        .mood-history {
+            display: flex;
+            gap: var(--space-1);
+            margin-top: var(--space-6);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .mood-day {
+            width: 24px;
+            height: 24px;
+            border-radius: var(--radius-sm);
+            background: var(--border-light);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .mood-day.excellent { background: #10b981; }
+        .mood-day.good { background: #84cc16; }
+        .mood-day.okay { background: #f59e0b; }
+        .mood-day.bad { background: #ef4444; }
+        .mood-day.terrible { background: #7c2d12; }
+
+        .mood-analytics {
+            margin-top: var(--space-8);
+            padding: var(--space-6);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+        }
+
+        .mood-chart {
+            height: 200px;
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-4);
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            padding: var(--space-4);
+            gap: var(--space-1);
+        }
+
+        .mood-bar {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-sm);
+            min-height: 20px;
+            flex: 1;
+            transition: height var(--transition-slow);
+        }
+
+        /* Mindfulness Exercises */
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .exercise-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .exercise-icon {
+            font-size: 3.5rem;
+            margin-bottom: var(--space-4);
+            display: block;
+        }
+
+        .exercise-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            color: var(--text-primary);
+        }
+
+        .exercise-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-6);
+            line-height: 1.6;
+        }
+
+        .exercise-duration {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        /* Scientific Zone */
+        .science-section {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: var(--space-8);
+        }
+
+        .article-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            transition: all var(--transition-normal);
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            background: var(--primary);
+            color: var(--text-inverse);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .article-title {
+            font-family: var(--font-serif);
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+            line-height: 1.4;
+        }
+
+        .article-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-6);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Sensory Room */
+        .sensory-room {
+            position: relative;
+            padding: var(--space-20) 0;
+            color: var(--text-inverse);
+            text-align: center;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            margin: var(--space-16) 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sensory-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .sensory-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .sensory-controls {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: var(--space-8);
+        }
+
+        .sensory-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--text-inverse);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+        }
+
+        .sensory-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .sensory-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Hope Wall */
+        .hope-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .hope-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .hope-note {
+            background: var(--surface);
+            color: var(--text-primary);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transform: rotate(-1deg);
+            transition: all var(--transition-normal);
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .hope-note:nth-child(2n) { transform: rotate(1deg); }
+        .hope-note:nth-child(3n) { transform: rotate(-0.5deg); }
+        .hope-note:nth-child(4n) { transform: rotate(0.5deg); }
+
+        .hope-note:hover {
+            transform: rotate(0) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            z-index: 10;
+        }
+
+        .hope-note::before {
+            content: '📌';
+            position: absolute;
+            top: -8px;
+            right: var(--space-4);
+            font-size: 1.5rem;
+            transform: rotate(15deg);
+        }
+
+        .hope-message {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+        }
+
+        .hope-signature {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.875rem;
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+        }
+
+        .tool-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            transition: all var(--transition-normal);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .tool-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .tool-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Journal */
+        .journal-prompt {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-4);
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-style: italic;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            font-size: 1.125rem;
+        }
+
+        .journal-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: var(--space-4);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+            background: var(--surface);
+            color: var(--text-primary);
+            transition: border-color var(--transition-normal);
+        }
+
+        .journal-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Breathing Guide */
+        .breathing-guide {
+            text-align: center;
+            padding: var(--space-8);
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+        }
+
+        .breathing-circle {
+            width: 180px;
+            height: 180px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            margin: var(--space-8) auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .breathing-circle::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--primary-light);
+            border-radius: var(--radius-full);
+            opacity: 0.5;
+        }
+
+        .breathing-text {
+            color: var(--text-inverse);
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .breathing-inhale {
+            animation: breatheIn 4s ease-in-out infinite;
+        }
+
+        .breathing-hold {
+            animation: breatheHold 4s ease-in-out infinite;
+        }
+
+        .breathing-exhale {
+            animation: breatheOut 4s ease-in-out infinite;
+        }
+
+        @keyframes breatheIn {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes breatheHold {
+            0%, 25%, 75%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes breatheOut {
+            0%, 100% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            color: var(--text-primary);
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95) translateY(20px);
+            transition: transform var(--transition-normal);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-light);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .modal-title {
+            font-size: 1.875rem;
+            color: var(--primary);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+
+        .modal-close {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background: var(--error);
+            color: var(--text-inverse);
+            border-color: var(--error);
+        }
+
+        .modal-body h4 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-4);
+            font-weight: 600;
+            border-left: 3px solid var(--primary);
+            padding-left: var(--space-4);
+            font-family: var(--font-serif);
+        }
+
+        .modal-body ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-body li {
+            margin-bottom: var(--space-4);
+            padding-left: var(--space-6);
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .modal-body li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.125rem;
+        }
+
+        .scientific-ref {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            margin-top: var(--space-8);
+            text-align: center;
+            font-style: italic;
+            padding: var(--space-4);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        /* SOS Button */
+        .sos-button {
+            position: fixed;
+            bottom: var(--space-8);
+            right: var(--space-8);
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--error), #dc2626);
+            color: var(--text-inverse);
+            border-radius: var(--radius-full);
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            z-index: 999;
+            animation: pulse-sos 2s infinite;
+            transition: transform var(--transition-normal);
+        }
+
+        .sos-button:hover {
+            transform: scale(1.1);
+            animation-play-state: paused;
+        }
+
+        @keyframes pulse-sos {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border-light);
+            padding: var(--space-16) 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-8);
+            margin: var(--space-8) 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-normal);
+        }
+
+        .footer-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-4);
+            }
+
+            .header {
+                padding: var(--space-16) 0 var(--space-12);
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .emotion-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-4);
+            }
+
+            .tools-grid,
+            .articles-grid,
+            .exercise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sos-button {
+                width: 60px;
+                height: 60px;
+                font-size: 0.875rem;
+                right: var(--space-4);
+                bottom: var(--space-4);
+            }
+
+            .modal-content {
+                padding: var(--space-6);
+                margin: var(--space-4);
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                gap: var(--space-4);
+            }
+
+            .nav-link {
+                font-size: 0.875rem;
+                padding: var(--space-2) var(--space-3);
+            }
+
+            .mood-scale {
+                gap: var(--space-2);
+            }
+
+            .mood-option {
+                width: 56px;
+                height: 56px;
+                font-size: 1.5rem;
+            }
+
+            .breathing-circle {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .emotion-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-6);
+            }
+
+            .sensory-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hope-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .spinner {
+            border: 2px solid var(--border-light);
+            border-top: 2px solid var(--primary);
+            border-radius: var(--radius-full);
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: var(--space-2);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Focus styles for accessibility */
+        *:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        button:focus,
+        .btn:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
+        <span class="theme-icon theme-icon-sun">☀️</span>
+        <span class="theme-icon theme-icon-moon">🌙</span>
+    </button>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content text-center">
+                <h1 class="reveal">CICATRIZ</h1>
+                <p class="subtitle reveal">Seu refúgio digital para saúde mental baseado em ciência</p>
+                <div class="header-stats reveal">
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Disponível</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Gratuito</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Apoio</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">🧠</span>
+                        <span class="stat-label">Científico</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#progress" class="nav-link">Progresso</a>
+                <a href="#emotions" class="nav-link">Emoções</a>
+                <a href="#mood-tracker" class="nav-link">Humor</a>
+                <a href="#mindfulness" class="nav-link">Mindfulness</a>
+                <a href="#science" class="nav-link">Ciência</a>
+                <a href="#sensory" class="nav-link">Relaxar</a>
+                <a href="#hope" class="nav-link">Esperança</a>
+                <a href="#tools" class="nav-link">Ferramentas</a>
+                <a href="#help" class="nav-link">Ajuda</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Progress Section -->
+        <section id="progress" class="container">
+            <div class="section-title reveal">
+                <h2>Seu Progresso</h2>
+                <p>Acompanhe sua jornada de bem-estar e celebre cada conquista, por menor que seja.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-8 reveal">
+                <div class="card">
+                    <h3 class="text-center" style="margin-bottom: var(--space-6); font-size: 1.25rem; font-weight: 600;">Bem-estar Geral</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="wellness-progress" style="width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between" style="margin-top: var(--space-2); font-size: 0.875rem; color: var(--text-secondary);">
+                        <span>Iniciante</span>
+                        <span id="wellness-percentage">0%</span>
+                        <span>Mestre</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-4" style="margin-top: var(--space-8);">
+                    <h4 style="text-align: center; font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-4);">Conquistas Desbloqueadas</h4>
+                    <div class="flex flex-wrap justify-center gap-2" id="achievements-container">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emotions Panel -->
+        <section id="emotions" class="container">
+            <div class="section-title reveal">
+                <h2>Painel de Emoções Expandido</h2>
+                <p>Explore suas emoções com base científica. Cada emoção tem estratégias validadas pela psicologia moderna.</p>
+            </div>
+            
+            <div class="emotion-grid reveal">
+                <div class="emotion-card" data-emotion="ansiedade">
+                    <span class="emotion-icon">🌀</span>
+                    <div class="emotion-title">Ansiedade</div>
+                    <div class="emotion-subtitle">Preocupação excessiva</div>
+                </div>
+                <div class="emotion-card" data-emotion="depressao">
+                    <span class="emotion-icon">💧</span>
+                    <div class="emotion-title">Depressão</div>
+                    <div class="emotion-subtitle">Tristeza persistente</div>
+                </div>
+                <div class="emotion-card" data-emotion="panico">
+                    <span class="emotion-icon">⚡</span>
+                    <div class="emotion-title">Pânico</div>
+                    <div class="emotion-subtitle">Medo intenso súbito</div>
+                </div>
+                <div class="emotion-card" data-emotion="burnout">
+                    <span class="emotion-icon">🔋</span>
+                    <div class="emotion-title">Burnout</div>
+                    <div class="emotion-subtitle">Esgotamento profissional</div>
+                </div>
+                <div class="emotion-card" data-emotion="raiva">
+                    <span class="emotion-icon">🔥</span>
+                    <div class="emotion-title">Raiva</div>
+                    <div class="emotion-subtitle">Irritação e frustração</div>
+                </div>
+                <div class="emotion-card" data-emotion="solidao">
+                    <span class="emotion-icon">👤</span>
+                    <div class="emotion-title">Solidão</div>
+                    <div class="emotion-subtitle">Isolamento social</div>
+                </div>
+                <div class="emotion-card" data-emotion="procrastinacao">
+                    <span class="emotion-icon">⏳</span>
+                    <div class="emotion-title">Procrastinação</div>
+                    <div class="emotion-subtitle">Adiamento constante</div>
+                </div>
+                <div class="emotion-card" data-emotion="autocobranca">
+                    <span class="emotion-icon">⚖️</span>
+                    <div class="emotion-title">Autocobrança</div>
+                    <div class="emotion-subtitle">Perfeccionismo tóxico</div>
+                </div>
+                <div class="emotion-card" data-emotion="insuficiencia">
+                    <span class="emotion-icon">🎭</span>
+                    <div class="emotion-title">Síndrome do Impostor</div>
+                    <div class="emotion-subtitle">Sentir-se uma fraude</div>
+                </div>
+                <div class="emotion-card" data-emotion="trauma">
+                    <span class="emotion-icon">🕰️</span>
+                    <div class="emotion-title">Trauma</div>
+                    <div class="emotion-subtitle">Estresse pós-traumático</div>
+                </div>
+                <div class="emotion-card" data-emotion="toc">
+                    <span class="emotion-icon">🔄</span>
+                    <div class="emotion-title">TOC</div>
+                    <div class="emotion-subtitle">Pensamentos obsessivos</div>
+                </div>
+                <div class="emotion-card" data-emotion="fobia-social">
+                    <span class="emotion-icon">👥</span>
+                    <div class="emotion-title">Fobia Social</div>
+                    <div class="emotion-subtitle">Medo de julgamento</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Mood Tracker -->
+        <section id="mood-tracker" class="container">
+            <div class="section-title reveal">
+                <h2>Tracker de Humor Inteligente</h2>
+                <p>Monitore seu humor com análises avançadas e insights personalizados baseados em seus padrões.</p>
+            </div>
+            
+            <div class="mood-tracker reveal">
+                <h3 style="text-align: center; margin-bottom: var(--space-6);">Como você está se sentindo hoje?</h3>
+                <div class="mood-scale">
+                    <div class="mood-option" data-mood="terrible" title="Terrível">😢</div>
+                    <div class="mood-option" data-mood="bad" title="Mal">😔</div>
+                    <div class="mood-option" data-mood="okay" title="Ok">😐</div>
+                    <div class="mood-option" data-mood="good" title="Bem">😊</div>
+                    <div class="mood-option" data-mood="excellent" title="Excelente">😄</div>
+                </div>
+                
+                <div class="mood-history" id="mood-history">
+                    <!-- Populated by JavaScript -->
+                </div>
+                
+                <p style="text-align: center; margin-top: var(--space-4); font-size: 0.875rem; color: var(--text-secondary);">
+                    Últimos 30 dias - Clique em um emoji para registrar seu humor
+                </p>
+                
+                <div class="mood-analytics">
+                    <h4 style="text-align: center; margin-bottom: var(--space-4);">Análise Semanal</h4>
+                    <div class="mood-chart" id="mood-chart">
+                        <!-- Chart bars will be populated by JavaScript -->
+                    </div>
+                    <div id="mood-insights" style="margin-top: var(--space-6); padding: var(--space-4); background: var(--surface); border-radius: var(--radius-lg); text-align: center;">
+                        <p style="color: var(--text-secondary);">Registre seu humor por alguns dias para ver insights personalizados</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Mindfulness -->
+        <section id="mindfulness" class="container">
+            <div class="section-title reveal">
+                <h2>Centro de Mindfulness</h2>
+                <p>Práticas guiadas baseadas em evidências científicas para reduzir estresse e aumentar o bem-estar.</p>
+            </div>
+            
+            <div class="exercise-grid reveal">
+                <div class="exercise-card">
+                    <span class="exercise-icon">🧘‍♀️</span>
+                    <h3 class="exercise-title">Respiração 4-7-8</h3>
+                    <p class="exercise-description">Técnica desenvolvida pelo Dr. Andrew Weil para ativar o sistema nervoso parassimpático e induzir relaxamento.</p>
+                    <div class="exercise-duration">⏱️ 5 minutos</div>
+                    <button class="btn btn-primary exercise-timer" data-exercise="breathing-478" data-duration="300">Iniciar</button>
+                </div>
+                
+                <div class="exercise-card">
+                    <span class="exercise-icon">🌊</span>
+                    <h3 class="exercise-title">Body Scan Progressivo</h3>
+                    <p class="exercise-description">Baseado na técnica de Relaxamento Muscular Progressivo de Jacobson, reduz tensão física e mental.</p>
+                    <div class="exercise-duration">⏱️ 10 minutos</div>
+                    <button class="btn btn-primary exercise-timer" data-exercise="bodyscan" data-duration="600">Iniciar</button>
+                </div>
+                
+                <div class="exercise-card">
+                    <span class="exercise-icon">🍃</span>
+                    <h3 class="exercise-title">Meditação da Gratidão</h3>
+                    <p class="exercise-description">Prática baseada na Psicologia Positiva de Martin Seligman para aumentar bem-estar e resiliência.</p>
+                    <div class="exercise-duration">⏱️ 7 minutos</div>
+                    <button class="btn btn-primary exercise-timer" data-exercise="gratitude" data-duration="420">Iniciar</button>
+                </div>
+                
+                <div class="exercise-card">
+                    <span class="exercise-icon">🎵</span>
+                    <h3 class="exercise-title">Meditação Sonora</h3>
+                    <p class="exercise-description">Técnica de ancoragem no presente através da consciência auditiva, reduz ruminação mental.</p>
+                    <div class="exercise-duration">⏱️ 8 minutos</div>
+                    <button class="btn btn-primary exercise-timer" data-exercise="sound" data-duration="480">Iniciar</button>
+                </div>
+                
+                <div class="exercise-card">
+                    <span class="exercise-icon">🌱</span>
+                    <h3 class="exercise-title">Mindfulness RAIN</h3>
+                    <p class="exercise-description">Técnica de Tara Brach: Reconhecer, Aceitar, Investigar e Não-identificação com emoções difíceis.</p>
+                    <div class="exercise-duration">⏱️ 12 minutos</div>
+                    <button class="btn btn-primary exercise-timer" data-exercise="rain" data-duration="720">Iniciar</button>
+                </div>
+                
+                <div class="exercise-card">
+                    <span class="exercise-icon">❄️</span>
+                    <h3 class="exercise-title">Técnica do Gelo</h3>
+                    <p class="exercise-description">Método de regulação emocional através do reflexo de mergulho mamífero, eficaz para crises de ansiedade.</p>
+                    <div class="exercise-duration">⏱️ 3 minutos</div>
+                    <button class="btn btn-primary exercise-timer" data-exercise="ice" data-duration="180">Iniciar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Scientific Zone -->
+        <section id="science" class="science-section">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Centro Científico 🧬</h2>
+                    <p>Conhecimento baseado em evidências para entender sua mente e emoções de forma científica e acessível.</p>
+                </div>
+                
+                <div class="articles-grid reveal">
+                    <article class="article-card">
+                        <div class="article-category">Neurociência</div>
+                        <h3 class="article-title">Neuroplasticidade: Seu Cérebro Pode Mudar</h3>
+                        <div class="article-content">
+                            <p>A neuroplasticidade é a capacidade extraordinária do cérebro de reorganizar suas conexões neurais ao longo da vida. Estudos mostram que práticas como meditação, exercício e terapia podem literalmente remodelar circuitos cerebrais, criando novos caminhos neurais para pensamentos e comportamentos mais saudáveis.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span>📚 Baseado em estudos de Norman Doidge</span>
+                            <span>⏱️ 3 min leitura</span>
+                        </div>
+                    </article>
+                    
+                    <article class="article-card">
+                        <div class="article-category">Psicologia</div>
+                        <h3 class="article-title">Sistema Nervoso Autônomo e Emoções</h3>
+                        <div class="article-content">
+                            <p>O sistema nervoso autônomo controla respostas involuntárias como batimentos cardíacos e respiração. O ramo simpático ativa o "modo luta ou fuga", enquanto o parassimpático promove "descanso e digestão". Técnicas de respiração podem ativar conscientemente o sistema parassimpático.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span>📚 Teoria Polivagal - Stephen Porges</span>
+                            <span>⏱️ 4 min leitura</span>
+                        </div>
+                    </article>
+                    
+                    <article class="article-card">
+                        <div class="article-category">Neurobiologia</div>
+                        <h3 class="article-title">Neurotransmissores e Humor</h3>
+                        <div class="article-content">
+                            <p><strong>Serotonina</strong> regula humor e sono (90% produzida no intestino). <strong>Dopamina</strong> controla motivação e recompensa. <strong>GABA</strong> é o principal neurotransmissor inibitório, promovendo calma. <strong>Noradrenalina</strong> afeta atenção e alerta. O equilíbrio entre eles determina nosso estado emocional.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span>📚 Neurobiologia Molecular</span>
+                            <span>⏱️ 5 min leitura</span>
+                        </div>
+                    </article>
+                    
+                    <article class="article-card">
+                        <div class="article-category">Terapia</div>
+                        <h3 class="article-title">Terapia Cognitivo-Comportamental (TCC)</h3>
+                        <div class="article-content">
+                            <p>A TCC baseia-se no triângulo: Pensamentos → Emoções → Comportamentos. Mudando padrões de pensamento distorcidos (vieses cognitivos), podemos alterar como nos sentimos e agimos. É a terapia com mais evidências científicas para ansiedade e depressão.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span>📚 Aaron Beck & Albert Ellis</span>
+                            <span>⏱️ 6 min leitura</span>
+                        </div>
+                    </article>
+                    
+                    <article class="article-card">
+                        <div class="article-category">Fisiologia</div>
+                        <h3 class="article-title">Eixo Hipotálamo-Hipófise-Adrenal (HPA)</h3>
+                        <div class="article-content">
+                            <p>O eixo HPA é o sistema central de resposta ao estresse. Quando ativado, libera cortisol, que em níveis crônicos pode causar inflamação, suprimir o sistema imune e afetar memória. Práticas de mindfulness demonstram reduzir a ativação do eixo HPA.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span>📚 Pesquisas em Psiconeuroimunologia</span>
+                            <span>⏱️ 4 min leitura</span>
+                        </div>
+                    </article>
+                    
+                    <article class="article-card">
+                        <div class="article-category">Sono</div>
+                        <h3 class="article-title">Arquitetura do Sono e Saúde Mental</h3>
+                        <div class="article-content">
+                            <p>O sono REM processa emoções e consolida memórias. O sono profundo (ondas delta) restaura o cérebro e limpa toxinas através do sistema glinfático. Privação do sono aumenta atividade da amígdala em 60% e reduz controle do córtex pré-frontal.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span>📚 Matthew Walker - "Por que Nós Dormimos"</span>
+                            <span>⏱️ 5 min leitura</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Sensory Room -->
+        <section id="sensory" class="sensory-room reveal">
+            <div class="sensory-overlay"></div>
+            <div class="container sensory-content">
+                <h2>Sala Sensorial Imersiva 🎧</h2>
+                <p>Ambiente controlado para regulação sensorial e redução do estresse. Use fones de ouvido para uma experiência completa.</p>
+                
+                <div class="sensory-controls">
+                    <button class="sensory-btn" id="nature-sounds">🌊 Oceano</button>
+                    <button class="sensory-btn" id="rain-sounds">🌧️ Chuva</button>
+                    <button class="sensory-btn" id="forest-sounds">🌲 Floresta</button>
+                    <button class="sensory-btn" id="fire-sounds">🔥 Lareira</button>
+                    <button class="sensory-btn" id="cafe-sounds">☕ Café</button>
+                    <button class="sensory-btn" id="binaural-beats">🧠 Ondas Cerebrais</button>
+                    <button class="sensory-btn" id="stop-sounds">⏹️ Parar</button>
+                </div>
+                
+                <div style="margin-top: var(--space-8); padding: var(--space-6); background: rgba(255,255,255,0.1); border-radius: var(--radius-lg); backdrop-filter: blur(10px);">
+                    <h4 style="margin-bottom: var(--space-4);">Controle de Ambiente</h4>
+                    <div class="flex gap-4 justify-center flex-wrap">
+                        <button class="sensory-btn" id="dim-lights">💡 Luz Suave</button>
+                        <button class="sensory-btn" id="breathing-visual">🫁 Visual Respiração</button>
+                        <button class="sensory-btn" id="color-therapy">🌈 Cromoterapia</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Hope Wall -->
+        <section id="hope" class="hope-section">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Mural da Esperança 💌</h2>
+                    <p>Mensagens reais de pessoas que passaram por momentos difíceis e encontraram luz no fim do túnel.</p>
+                </div>
+                
+                <div class="hope-grid reveal" id="hope-grid">
+                    <div class="hope-note">
+                        <p class="hope-message">"Alguns dias são apenas para sobreviver. E tudo bem. Amanhã a gente tenta de novo. A cura não é linear."</p>
+                        <div class="hope-signature">- Alguém que entende</div>
+                    </div>
+                    
+                    <div class="hope-note">
+                        <p class="hope-message">"Chorar não é fraqueza. É o seu corpo falando. Escute-o com carinho e sem julgamento."</p>
+                        <div class="hope-signature">- De um coração para outro</div>
+                    </div>
+                    
+                    <div class="hope-note">
+                        <p class="hope-message">"Você já sobreviveu a 100% dos seus piores dias. Essa estatística é incrível e real."</p>
+                        <div class="hope-signature">- Um guerreiro silencioso</div>
+                    </div>
+                    
+                    <div class="hope-note">
+                        <p class="hope-message">"Sua sensibilidade não é um defeito. É um superpoder em um mundo que precisa de mais empatia."</p>
+                        <div class="hope-signature">- Alguém que vê sua luz</div>
+                    </div>
+                    
+                    <div class="hope-note">
+                        <p class="hope-message">"A terapia me ensinou que não preciso carregar tudo sozinho. Pedir ajuda é um ato de coragem."</p>
+                        <div class="hope-signature">- Em recuperação</div>
+                    </div>
+                    
+                    <div class="hope-note">
+                        <p class="hope-message">"Minha ansiedade me fez descobrir uma força que eu não sabia que tinha. Hoje ela não me controla mais."</p>
+                        <div class="hope-signature">- Livre das correntes</div>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: var(--space-8);">
+                    <button class="btn btn-primary" id="add-hope-btn">✨ Compartilhar Esperança</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Tools Section -->
+        <section id="tools" class="container">
+            <div class="section-title reveal">
+                <h2>Caixa de Ferramentas Avançada 🧰</h2>
+                <p>Recursos terapêuticos baseados em evidências para apoiar sua jornada de bem-estar mental.</p>
+            </div>
+            
+            <div class="tools-grid reveal">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <span class="tool-icon">📝</span>
+                        <h3 class="tool-title">Diário Terapêutico Inteligente</h3>
+                    </div>
+                    <div class="tool-content">
+                        <div class="journal-prompt" id="journal-prompt">Clique para gerar uma pergunta reflexiva</div>
+                        <button class="btn btn-secondary" id="journal-prompt-btn" style="width: 100%; margin-bottom: var(--space-4);">Gerar Pergunta</button>
+                        <textarea class="journal-textarea" id="journal-textarea" placeholder="Escreva seus pensamentos aqui..."></textarea>
+                        <div class="flex gap-2" style="margin-top: var(--space-4);">
+                            <button class="btn btn-primary" id="save-journal">💾 Salvar</button>
+                            <button class="btn btn-ghost" id="journal-history">📚 Histórico</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <span class="tool-icon">🫁</span>
+                        <h3 class="tool-title">Guia de Respiração Interativo</h3>
+                    </div>
+                    <div class="tool-content">
+                        <div class="breathing-guide">
+                            <div class="breathing-circle" id="breathing-circle">
+                                <span class="breathing-text" id="breathing-text">Clique para iniciar</span>
+                            </div>
+                            <div class="flex gap-2 justify-center" style="margin-top: var(--space-4);">
+                                <button class="btn btn-primary" id="start-breathing">Iniciar</button>
+                                <button class="btn btn-secondary" id="stop-breathing">Parar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <span class="tool-icon">🧠</span>
+                        <h3 class="tool-title">Reestruturação Cognitiva (TCC)</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p style="margin-bottom: var(--space-4); color: var(--text-secondary);">Identifique e desafie pensamentos distorcidos</p>
+                        <div id="thought-record" style="display: none;">
+                            <input type="text" placeholder="Qual pensamento está te incomodando?" style="width: 100%; padding: var(--space-3); border: 1px solid var(--border-light); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
+                            <select style="width: 100%; padding: var(--space-3); border: 1px solid var(--border-light); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
+                                <option>Selecione a distorção cognitiva</option>
+                                <option>Pensamento Tudo ou Nada</option>
+                                <option>Catastrofização</option>
+                                <option>Leitura Mental</option>
+                                <option>Filtro Mental</option>
+                                <option>Personalização</option>
+                            </select>
+                            <textarea placeholder="Como você pode repensar isso de forma mais equilibrada?" style="width: 100%; min-height: 80px; padding: var(--space-3); border: 1px solid var(--border-light); border-radius: var(--radius-md);"></textarea>
+                        </div>
+                        <button class="btn btn-primary" id="start-thought-record">Iniciar Registro</button>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <span class="tool-icon">🎯</span>
+                        <h3 class="tool-title">Metas de Bem-estar SMART</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p style="margin-bottom: var(--space-4); color: var(--text-secondary);">Defina metas específicas, mensuráveis e alcançáveis</p>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="card" style="padding: var(--space-4);">
+                                <h4 style="font-size: 1rem; margin-bottom: var(--space-2);">🧘 Mindfulness Diário</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: var(--space-2);">6/10 dias esta semana</p>
+                            </div>
+                            <div class="card" style="padding: var(--space-4);">
+                                <h4 style="font-size: 1rem; margin-bottom: var(--space-2);">💧 Hidratação</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: var(--space-2);">8/10 copos hoje</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: var(--space-4);">+ Adicionar Meta</button>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <span class="tool-icon">🌟</span>
+                        <h3 class="tool-title">Frases de Autocompaixão</h3>
+                    </div>
+                    <div class="tool-content">
+                        <div class="card" style="padding: var(--space-4); background: var(--bg-secondary); text-align: center; font-style: italic;" id="compassion-phrase">
+                            "Eu mereço gentileza, especialmente de mim mesmo."
+                        </div>
+                        <button class="btn btn-primary" id="new-compassion-phrase" style="width: 100%; margin-top: var(--space-4);">Nova Frase</button>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <span class="tool-icon">🚨</span>
+                        <h3 class="tool-title">Kit de Emergência Emocional</h3>
+                    </div>
+                    <div class="tool-content">
+                        <div class="grid grid-cols-1 gap-3">
+                            <button class="btn btn-secondary" id="grounding-5432">🌍 Técnica 5-4-3-2-1</button>
+                            <button class="btn btn-secondary" id="ice-technique">❄️ Técnica do Gelo</button>
+                            <button class="btn btn-secondary" id="safe-place">🏠 Lugar Seguro Mental</button>
+                            <button class="btn btn-secondary" id="emergency-contacts">📞 Contatos de Emergência</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Help -->
+        <section id="help" class="container">
+            <div class="section-title reveal">
+                <h2>Recursos Profissionais</h2>
+                <p>Quando precisar de apoio especializado, estes recursos estão disponíveis 24/7.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-8 reveal" style="max-width: 1000px; margin: 0 auto;">
+                <div class="card card-elevated" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-color: #fca5a5;">
+                    <div class="text-center">
+                        <div style="font-size: 3rem; margin-bottom: var(--space-4);">🚨</div>
+                        <h3 style="color: #dc2626; margin-bottom: var(--space-4);">Emergência - Risco Imediato</h3>
+                        <div class="flex gap-4 justify-center flex-wrap">
+                            <a href="tel:188" class="btn btn-primary" style="background: #dc2626;">📞 CVV - 188</a>
+                            <a href="tel:192" class="btn btn-primary" style="background: #dc2626;">🚑 SAMU - 192</a>
+                            <a href="tel:190" class="btn btn-primary" style="background: #dc2626;">👮 Polícia - 190</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-6" style="margin-top: var(--space-8);">
+                    <div class="card">
+                        <div class="flex items-center gap-4 margin-bottom: var(--space-4);">
+                            <span style="font-size: 2.5rem;">💬</span>
+                            <div>
+                                <h3 style="margin-bottom: var(--space-2);">CVV - Centro de Valorização da Vida</h3>
+                                <p style="color: var(--text-secondary);">Apoio emocional gratuito, sigiloso e 24h</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 flex-wrap">
+                            <a href="tel:188" class="btn btn-primary">Ligar 188</a>
+                            <a href="https://www.cvv.org.br/" target="_blank" class="btn btn-secondary">Site Oficial</a>
+                            <a href="https://www.cvv.org.br/chat/" target="_blank" class="btn btn-secondary">Chat Online</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="flex items-center gap-4" style="margin-bottom: var(--space-4);">
+                            <span style="font-size: 2.5rem;">🏥</span>
+                            <div>
+                                <h3 style="margin-bottom: var(--space-2);">CAPS - Centro de Atenção Psicossocial</h3>
+                                <p style="color: var(--text-secondary);">Atendimento gratuito pelo SUS</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 flex-wrap">
+                            <button class="btn btn-primary" id="find-caps">Encontrar CAPS</button>
+                            <a href="https://bvsms.saude.gov.br/" target="_blank" class="btn btn-secondary">Mais Informações</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="flex items-center gap-4" style="margin-bottom: var(--space-4);">
+                            <span style="font-size: 2.5rem;">💻</span>
+                            <div>
+                                <h3 style="margin-bottom: var(--space-2);">Terapia Online</h3>
+                                <p style="color: var(--text-secondary);">Plataformas de psicoterapia digital</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 flex-wrap">
+                            <a href="https://zenklub.com.br/" target="_blank" class="btn btn-secondary">Zenklub</a>
+                            <a href="https://www.vittude.com/" target="_blank" class="btn btn-secondary">Vittude</a>
+                            <a href="https://www.psicologiaviva.com.br/" target="_blank" class="btn btn-secondary">Psicologia Viva</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p style="font-weight: 600; margin-bottom: var(--space-4);">⚠️ Aviso Importante</p>
+                <p style="margin-bottom: var(--space-4);">Este site é uma ferramenta de apoio e psicoeducação baseada em evidências científicas. Não substitui diagnóstico, tratamento ou acompanhamento profissional. Em caso de crise ou pensamentos suicidas, procure ajuda imediatamente.</p>
+                
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Sobre o Projeto</a>
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Fontes Científicas</a>
+                    <a href="#" class="footer-link">Contato</a>
+                    <a href="#" class="footer-link">Feedback</a>
+                </div>
+                
+                <p style="font-size: 0.875rem; margin-top: var(--space-6);">
+                    Desenvolvido com ❤️ e baseado em evidências científicas para promover saúde mental acessível.<br>
+                    © 2024 CICATRIZ - Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SOS Button -->
+    <button class="sos-button" id="sos-btn" aria-label="Botão de emergência">
+        SOS
+    </button>
+
+    <!-- Modals -->
+    <!-- Emotion Modal -->
+    <div class="modal-overlay" id="emotion-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="emotion-modal-title"></h3>
+                <button class="modal-close" id="close-emotion-modal" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body" id="emotion-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- SOS Modal -->
+    <div class="modal-overlay" id="sos-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="color: var(--error);">🚨 SOS Imediato</h3>
+                <button class="modal-close" id="close-sos-modal" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="background: #fee2e2; padding: var(--space-4); border-radius: var(--radius-lg); margin-bottom: var(--space-6); border: 1px solid #fca5a5;">
+                    <p style="color: #dc2626; font-weight: 600; text-align: center;">Se você está em risco imediato, ligue 188 (CVV) ou 192 (SAMU) agora!</p>
+                </div>
+                
+                <div class="breathing-guide" style="margin-bottom: var(--space-6);">
+                    <h4 style="text-align: center; margin-bottom: var(--space-4);">Respiração de Emergência</h4>
+                    <div class="breathing-circle" id="sos-breathing-circle">
+                        <span class="breathing-text" id="sos-breathing-text">Respire comigo</span>
+                    </div>
+                    <button class="btn btn-primary" id="start-sos-breathing" style="width: 100%; margin-top: var(--space-4);">Iniciar Respiração</button>
+                </div>
+                
+                <div class="card" style="margin-bottom: var(--space-6);">
+                    <h4 style="margin-bottom: var(--space-4);">🌍 Técnica 5-4-3-2-1 (Aterramento)</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: var(--space-3); padding-left: var(--space-6); position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">5:</span>
+                            Nomeie <strong>5 coisas</strong> que você pode ver agora
+                        </li>
+                        <li style="margin-bottom: var(--space-3); padding-left: var(--space-6); position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">4:</span>
+                            Toque em <strong>4 coisas</strong> diferentes ao seu redor
+                        </li>
+                        <li style="margin-bottom: var(--space-3); padding-left: var(--space-6); position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">3:</span>
+                            Ouça <strong>3 sons</strong> distintos no ambiente
+                        </li>
+                        <li style="margin-bottom: var(--space-3); padding-left: var(--space-6); position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">2:</span>
+                            Identifique <strong>2 cheiros</strong> diferentes
+                        </li>
+                        <li style="padding-left: var(--space-6); position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">1:</span>
+                            Note <strong>1 gosto</strong> na sua boca
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4 style="margin-bottom: var(--space-4);">📞 Contatos de Emergência</h4>
+                    <div class="grid grid-cols-1 gap-3">
+                        <a href="tel:188" class="btn btn-primary">CVV - 188 (24h gratuito)</a>
+                        <a href="tel:192" class="btn btn-secondary">SAMU - 192</a>
+                        <a href="https://www.cvv.org.br/chat/" target="_blank" class="btn btn-secondary">Chat CVV Online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hope Note Modal -->
+    <div class="modal-overlay" id="hope-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">✨ Compartilhar Esperança</h3>
+                <button class="modal-close" id="close-hope-modal" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: var(--space-6); color: var(--text-secondary);">Sua mensagem pode ser exatamente o que alguém precisa ouvir hoje. Compartilhe de forma anônima uma palavra de esperança, força ou encorajamento.</p>
+                
+                <textarea id="hope-message" placeholder="Escreva sua mensagem de esperança..." rows="4" style="width: 100%; padding: var(--space-4); border: 1px solid var(--border-light); border-radius: var(--radius-lg); font-family: var(--font-serif); resize: vertical; margin-bottom: var(--space-4);"></textarea>
+                
+                <input type="text" id="hope-signature" placeholder="Assinatura (opcional, ex: 'Alguém que se importa')" style="width: 100%; padding: var(--space-3); border: 1px solid var(--border-light); border-radius: var(--radius-lg); margin-bottom: var(--space-6);">
+                
+                <button id="submit-hope-note" class="btn btn-primary" style="width: 100%;">💌 Compartilhar Esperança</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Modal -->
+    <div class="modal-overlay" id="exercise-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exercise-modal-title">Exercício de Mindfulness</h3>
+                <button class="modal-close" id="close-exercise-modal" aria-label="Fechar modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <div id="exercise-timer" style="font-size: 3rem; font-weight: bold; color: var(--primary); margin: var(--space-8) 0;">05:00</div>
+                    <div id="exercise-instructions" style="margin: var(--space-8) 0; font-size: 1.125rem; line-height: 1.6; color: var(--text-secondary);"></div>
+                    <div class="flex gap-4 justify-center">
+                        <button id="start-exercise" class="btn btn-primary">▶️ Iniciar</button>
+                        <button id="pause-exercise" class="btn btn-secondary" style="display: none;">⏸️ Pausar</button>
+                        <button id="stop-exercise" class="btn btn-secondary" style="display: none;">⏹️ Parar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced JavaScript with new features
+        document.addEventListener('DOMContentLoaded', () => {
+            // === SYSTEM INITIALIZATION ===
+            initializeSystem();
+            
+            function initializeSystem() {
+                setupThemeToggle();
+                setupScrollAnimations();
+                setupProgressSystem();
+                setupMoodTracker();
+                setupEmotionCards();
+                setupMindfulnessExercises();
+                setupSensoryRoom();
+                setupHopeWall();
+                setupToolsSection();
+                setupSOSSystem();
+                setupNavigation();
+                setupAchievements();
+                
+                console.log('🌟 CICATRIZ Enhanced carregado com sucesso!');
+            }
+
+            // === THEME SYSTEM ===
+            function setupThemeToggle() {
+                const themeToggle = document.getElementById('theme-toggle');
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // Achievement for theme switching
+                    unlockAchievement('theme-switcher', '🌓 Explorador de Temas');
+                });
+            }
+
+            // === SCROLL ANIMATIONS ===
+            function setupScrollAnimations() {
+                const revealElements = document.querySelectorAll('.reveal');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                revealElements.forEach(el => observer.observe(el));
+            }
+
+            // === PROGRESS SYSTEM ===
+            function setupProgressSystem() {
+                updateWellnessProgress();
+                
+                function updateWellnessProgress() {
+                    const activities = JSON.parse(localStorage.getItem('userActivities')) || {};
+                    const totalPossible = 10; // Max activities
+                    const completed = Object.keys(activities).length;
+                    const percentage = Math.min((completed / totalPossible) * 100, 100);
+                    
+                    const progressFill = document.getElementById('wellness-progress');
+                    const percentageDisplay = document.getElementById('wellness-percentage');
+                    
+                    if (progressFill && percentageDisplay) {
+                        progressFill.style.width = percentage + '%';
+                        percentageDisplay.textContent = Math.round(percentage) + '%';
+                    }
+                }
+            }
+
+            // === ACHIEVEMENTS SYSTEM ===
+            function setupAchievements() {
+                const achievements = JSON.parse(localStorage.getItem('achievements')) || {};
+                displayAchievements(achievements);
+            }
+
+            function unlockAchievement(id, name) {
+                const achievements = JSON.parse(localStorage.getItem('achievements')) || {};
+                if (!achievements[id]) {
+                    achievements[id] = { name, unlockedAt: new Date().toISOString() };
+                    localStorage.setItem('achievements', JSON.stringify(achievements));
+                    displayAchievements(achievements);
+                    showAchievementNotification(name);
+                }
+            }
+
+            function displayAchievements(achievements) {
+                const container = document.getElementById('achievements-container');
+                if (!container) return;
+
+                container.innerHTML = '';
+                Object.values(achievements).forEach(achievement => {
+                    const badge = document.createElement('div');
+                    badge.className = 'achievement-badge fade-in';
+                    badge.textContent = achievement.name;
+                    container.appendChild(badge);
+                });
+            }
+
+            function showAchievementNotification(name) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    right: 20px;
+                    background: var(--gradient-secondary);
+                    color: white;
+                    padding: var(--space-4) var(--space-6);
+                    border-radius: var(--radius-lg);
+                    box-shadow: var(--shadow-lg);
+                    z-index: 1001;
+                    transform: translateX(100%);
+                    transition: transform 0.3s ease;
+                `;
+                notification.innerHTML = `<strong>🎉 Conquista Desbloqueada!</strong><br>${name}`;
+                
+                document.body.appendChild(notification);
+                setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => document.body.removeChild(notification), 300);
+                }, 4000);
+            }
+
+            // === ENHANCED MOOD TRACKER ===
+            function setupMoodTracker() {
+                const moodOptions = document.querySelectorAll('.mood-option');
+                const moodHistory = document.getElementById('mood-history');
+                const moodChart = document.getElementById('mood-chart');
+                const moodInsights = document.getElementById('mood-insights');
+
+                let moodData = JSON.parse(localStorage.getItem('moodData')) || [];
+
+                function updateMoodDisplay() {
+                    updateMoodHistory();
+                    updateMoodChart();
+                    updateMoodInsights();
+                }
+
+                function updateMoodHistory() {
+                    if (!moodHistory) return;
+                    
+                    moodHistory.innerHTML = '';
+                    const last30Days = moodData.slice(-30);
+                    
+                    for (let i = 0; i < 30; i++) {
+                        const dayElement = document.createElement('div');
+                        dayElement.className = 'mood-day';
+                        
+                        if (last30Days[i]) {
+                            const mood = last30Days[i].mood;
+                            dayElement.classList.add(mood);
+                            dayElement.title = `${last30Days[i].date}: ${mood}`;
+                        }
+                        
+                        moodHistory.appendChild(dayElement);
+                    }
+                }
+
+                function updateMoodChart() {
+                    if (!moodChart) return;
+                    
+                    moodChart.innerHTML = '';
+                    const last7Days = moodData.slice(-7);
+                    const moodValues = { terrible: 1, bad: 2, okay: 3, good: 4, excellent: 5 };
+                    
+                    last7Days.forEach((day, index) => {
+                        const bar = document.createElement('div');
+                        bar.className = 'mood-bar';
+                        const height = day ? (moodValues[day.mood] * 20) + '%' : '10%';
+                        bar.style.height = height;
+                        moodChart.appendChild(bar);
+                    });
+                }
+
+                function updateMoodInsights() {
+                    if (!moodInsights || moodData.length < 3) return;
+                    
+                    const recent = moodData.slice(-7);
+                    const moodValues = { terrible: 1, bad: 2, okay: 3, good: 4, excellent: 5 };
+                    const average = recent.reduce((sum, day) => sum + moodValues[day.mood], 0) / recent.length;
+                    
+                    let insight = '';
+                    if (average >= 4) {
+                        insight = '🌟 Você está em uma boa fase! Continue cuidando do seu bem-estar.';
+                    } else if (average >= 3) {
+                        insight = '🌱 Seu humor está equilibrado. Que tal experimentar alguns exercícios de mindfulness?';
+                    } else {
+                        insight = '💙 Percebo que você pode estar passando por um momento difícil. Lembre-se: você não está sozinho.';
+                    }
+                    
+                    moodInsights.innerHTML = `<p style="color: var(--text-primary);">${insight}</p>`;
+                }
+
+                moodOptions.forEach(option => {
+                    option.addEventListener('click', () => {
+                        moodOptions.forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        
+                        const today = new Date().toISOString().split('T')[0];
+                        const mood = option.dataset.mood;
+                        
+                        moodData = moodData.filter(entry => entry.date !== today);
+                        moodData.push({ date: today, mood: mood });
+                        
+                        localStorage.setItem('moodData', JSON.stringify(moodData));
+                        updateMoodDisplay();
+                        
+                        // Achievement for mood tracking
+                        unlockAchievement('mood-tracker', '📊 Observador de Emoções');
+                        
+                        option.classList.add('pulse');
+                        setTimeout(() => option.classList.remove('pulse'), 1000);
+                    });
+                });
+
+                // Mark today's mood if exists
+                const today = new Date().toISOString().split('T')[0];
+                const todayMood = moodData.find(entry => entry.date === today);
+                if (todayMood) {
+                    const selectedOption = document.querySelector(`[data-mood="${todayMood.mood}"]`);
+                    if (selectedOption) selectedOption.classList.add('selected');
+                }
+
+                updateMoodDisplay();
+            }
+
+            // === EMOTION CARDS WITH ENHANCED DATA ===
+            function setupEmotionCards() {
+                const emotionCards = document.querySelectorAll('.emotion-card');
+                const emotionModal = document.getElementById('emotion-modal');
+                const modalTitle = document.getElementById('emotion-modal-title');
+                const modalBody = document.getElementById('emotion-modal-body');
+                const closeModal = document.getElementById('close-emotion-modal');
+
+                const emotionData = {
+                    ansiedade: {
+                        title: 'Ansiedade',
+                        content: `
+                            <p><strong>O que você pode estar sentindo:</strong> Preocupação excessiva, tensão muscular, coração acelerado, pensamentos catastróficos, dificuldade de concentração.</p>
+                            
+                            <h4>🧠 Base Científica</h4>
+                            <p>A ansiedade envolve hiperativação da <strong>amígdala</strong> (centro do medo) e do <strong>córtex cingulado anterior</strong>. O sistema nervoso simpático libera adrenalina e cortisol, preparando o corpo para "luta ou fuga" mesmo sem perigo real.</p>
+                            
+                            <h4>⚡ Estratégias Imediatas</h4>
+                            <ul>
+                                <li><strong>Respiração 4-7-8:</strong> Inspire por 4s, segure por 7s, expire por 8s. Ativa o nervo vago.</li>
+                                <li><strong>Técnica 5-4-3-2-1:</strong> 5 coisas que vê, 4 que toca, 3 que ouve, 2 que cheira, 1 que sente o gosto.</li>
+                                <li><strong>Água fria:</strong> Lave rosto e pulsos para ativar o reflexo de mergulho mamífero.</li>
+                            </ul>
+                            
+                            <h4>🌱 Estratégias de Longo Prazo</h4>
+                            <ul>
+                                <li><strong>Terapia Cognitivo-Comportamental (TCC):</strong> Identifica e modifica padrões de pensamento ansiosos.</li>
+                                <li><strong>Mindfulness:</strong> 8 semanas de prática reduzem ansiedade em 58% (estudos de Jon Kabat-Zinn).</li>
+                                <li><strong>Exercício regular:</strong> Aumenta GABA e reduz cortisol.</li>
+                                <li><strong>Higiene do sono:</strong> Ansiedade e insônia se retroalimentam.</li>
+                            </ul>
+                            
+                            <div class="scientific-ref">
+                                Baseado em pesquisas de: Anxiety and Depression Association of America, estudos de neuroimagem funcional e meta-análises de tratamentos baseados em evidências.
+                            </div>
+                        `
+                    },
+                    depressao: {
+                        title: 'Depressão',
+                        content: `
+                            <p><strong>O que você pode estar sentindo:</strong> Tristeza persistente, perda de interesse, fadiga extrema, sentimentos de inutilidade, dificuldade de concentração, alterações no sono e apetite.</p>
+                            
+                            <h4>🧠 Base Científica</h4>
+                            <p>A depressão envolve desequilíbrio de neurotransmissores (<strong>serotonina, dopamina, noradrenalina</strong>) e redução de neuroplasticidade no <strong>hipocampo</strong>. Há também hipoativação do córtex pré-frontal e hiperativação da amígdala.</p>
+                            
+                            <h4>⚡ Estratégias Imediatas</h4>
+                            <ul>
+                                <li><strong>Ativação Comportamental:</strong> Uma pequena ação (5 min) quebra a inércia.</li>
+                                <li><strong>Luz solar:</strong> 15-30 min de exposição matinal regula ritmo circadiano.</li>
+                                <li><strong>Movimento:</strong> Mesmo uma caminhada de 10 min libera endorfinas.</li>
+                            </ul>
+                            
+                            <h4>🌱 Estratégias de Longo Prazo</h4>
+                            <ul>
+                                <li><strong>Psicoterapia:</strong> TCC, Terapia Interpessoal e Terapia de Aceitação são eficazes.</li>
+                                <li><strong>Exercício regular:</strong> Tão eficaz quanto antidepressivos para depressão leve a moderada.</li>
+                                <li><strong>Rotina estruturada:</strong> Ajuda a regular neurotransmissores.</li>
+                                <li><strong>Conexões sociais:</strong> Reduzem isolamento e ruminação.</li>
+                                <li><strong>Avaliação médica:</strong> Para casos moderados a severos, medicação pode ser necessária.</li>
+                            </ul>
+                            
+                            <div class="scientific-ref">
+                                Baseado em: DSM-5, estudos de neuroimagem, meta-análises de tratamentos e diretrizes da American Psychological Association.
+                            </div>
+                        `
+                    },
+                    panico: {
+                        title: 'Crise de Pânico',
+                        content: `
+                            <p><strong>O que você pode estar sentindo:</strong> Medo intenso de morrer ou enlouquecer, palpitações, sudorese, tremores, falta de ar, náusea, despersonalização, desrealização.</p>
+                            
+                            <h4>🧠 Base Científica</h4>
+                            <p>O pânico é uma <strong>falsa ativação</strong> do sistema de alarme. A amígdala dispara massivamente, liberando adrenalina. O <strong>locus coeruleus</strong> (centro do pânico) se torna hipersensível. É aterrorizante, mas não perigoso.</p>
+                            
+                            <h4>⚡ Durante a Crise</h4>
+                            <ul>
+                                <li><strong>Não lute, aceite:</strong> "Isso é pânico, não perigo. Vai passar em 10-20 minutos."</li>
+                                <li><strong>Respiração lenta:</strong> Expire mais longo que inspira (evita hiperventilação).</li>
+                                <li><strong>Aterramento físico:</strong> Pise descalço, segure gelo, pressione pontos de pressão.</li>
+                                <li><strong>Mantra:</strong> "Isso é temporário, eu estou seguro, já passei por isso antes."</li>
+                            </ul>
+                            
+                            <h4>🌱 Prevenção</h4>
+                            <ul>
+                                <li><strong>Terapia de Exposição:</strong> Reduz sensibilidade aos sintomas físicos.</li>
+                                <li><strong>TCC:</strong> Modifica interpretações catastróficas dos sintomas.</li>
+                                <li><strong>Evite cafeína:</strong> Pode desencadear sintomas em pessoas sensíveis.</li>
+                                <li><strong>Exercício regular:</strong> Reduz sensibilidade à ansiedade.</li>
+                            </ul>
+                            
+                            <div class="scientific-ref">
+                                Baseado em: Teoria da Sensibilidade à Ansiedade (Steven Taylor), protocolos de Terapia de Exposição Interoceptiva e estudos sobre Transtorno de Pânico.
+                            </div>
+                        `
+                    },
+                    burnout: {
+                        title: 'Burnout',
+                        content: `
+                            <p><strong>O que você pode estar sentindo:</strong> Exaustão emocional e física, cinismo, despersonalização, sensação de ineficácia, irritabilidade, insônia.</p>
+                            
+                            <h4>🧠 Base Científica</h4>
+                            <p>O burnout resulta de <strong>estresse crônico</strong> que esgota recursos adaptativos. Há desregulação do eixo HPA (hipotálamo-hipófise-adrenal), redução de dopamina e serotonina, e inflamação crônica.</p>
+                            
+                            <h4>⚡ Estratégias Imediatas</h4>
+                            <ul>
+                                <li><strong>Desconexão total:</strong> Defina horários rígidos para parar de trabalhar.</li>
+                                <li><strong>Micro-pausas:</strong> 5 min a cada hora para respirar ou alongar.</li>
+                                <li><strong>Atividade não-produtiva:</strong> Faça algo sem objetivo (arte, música, natureza).</li>
+                            </ul>
+                            
+                            <h4>🌱 Recuperação</h4>
+                            <ul>
+                                <li><strong>Estabeleça limites:</strong> Aprenda a dizer "não" e delegue tarefas.</li>
+                                <li><strong>Reconecte-se com propósito:</strong> Lembre-se do "porquê" do seu trabalho.</li>
+                                <li><strong>Apoio social:</strong> Compartilhe experiências com colegas ou terapeutas.</li>
+                                <li><strong>Autocuidado sistemático:</strong> Sono, nutrição, exercício não são luxos.</li>
+                                <li><strong>Considere mudanças:</strong> Ambiente tóxico pode exigir mudanças estruturais.</li>
+                            </ul>
+                            
+                            <div class="scientific-ref">
+                                Baseado em: Inventário de Burnout de Maslach, pesquisas sobre estresse ocupacional e diretrizes da OMS (CID-11).
+                            </div>
+                        `
+                    },
+                    toc: {
+                        title: 'Transtorno Obsessivo-Compulsivo (TOC)',
+                        content: `
+                            <p><strong>O que você pode estar sentindo:</strong> Pensamentos intrusivos recorrentes, necessidade de realizar rituais, ansiedade extrema quando não consegue fazer compulsões, dúvidas constantes.</p>
+                            
+                            <h4>🧠 Base Científica</h4>
+                            <p>O TOC envolve hiperatividade no <strong>circuito córtico-estriado-tálamo-cortical</strong>. Há desequilíbrio de serotonina e hiperativação do córtex orbitofrontal e núcleo caudado.</p>
+                            
+                            <h4>⚡ Estratégias Imediatas</h4>
+                            <ul>
+                                <li><strong>Reconheça que é TOC:</strong> "Isso é meu TOC falando, não eu."</li>
+                                <li><strong>Adie a compulsão:</strong> "Vou fazer isso em 15 minutos" (geralmente a urgência passa).</li>
+                                <li><strong>Mindfulness:</strong> Observe pensamentos sem julgamento ou ação.</li>
+                            </ul>
+                            
+                            <h4>🌱 Tratamento</h4>
+                            <ul>
+                                <li><strong>Terapia de Exposição e Prevenção de Resposta (EPR):</strong> Padrão-ouro para TOC.</li>
+                                <li><strong>TCC especializada:</strong> Focada em obsessões e compulsões.</li>
+                                <li><strong>Medicação:</strong> ISRSs em doses mais altas que para depressão.</li>
+                                <li><strong>Mindfulness:</strong> Reduz fusão com pensamentos obsessivos.</li>
+                            </ul>
+                            
+                            <div class="scientific-ref">
+                                Baseado em: International OCD Foundation, estudos de neuroimagem e diretrizes de tratamento baseadas em evidências.
+                            </div>
+                        `
+                    },
+                    'fobia-social': {
+                        title: 'Fobia Social',
+                        content: `
+                            <p><strong>O que você pode estar sentindo:</strong> Medo intenso de julgamento, evitação de situações sociais, sintomas físicos (rubor, tremor, sudorese), antecipação ansiosa.</p>
+                            
+                            <h4>🧠 Base Científica</h4>
+                            <p>A fobia social envolve hiperativação da <strong>amígdala</strong> em resposta a rostos e situações sociais, com hipoativação do córtex pré-frontal (controle inibitório).</p>
+                            
+                            <h4>⚡ Estratégias Imediatas</h4>
+                            <ul>
+                                <li><strong>Respiração diafragmática:</strong> Reduz sintomas físicos visíveis.</li>
+                                <li><strong>Reestruturação cognitiva:</strong> "As pessoas estão focadas em si mesmas, não em mim."</li>
+                                <li><strong>Exposição gradual:</strong> Comece com situações menos ameaçadoras.</li>
+                            </ul>
+                            
+                            <h4>🌱 Tratamento</h4>
+                            <ul>
+                                <li><strong>TCC para Fobia Social:</strong> Modifica pensamentos e comportamentos sociais.</li>
+                                <li><strong>Terapia de Exposição:</strong> Exposição gradual e sistemática a situações sociais.</li>
+                                <li><strong>Treinamento de habilidades sociais:</strong> Desenvolve confiança em interações.</li>
+                                <li><strong>Mindfulness social:</strong> Presença consciente em interações.</li>
+                            </ul>
+                            
+                            <div class="scientific-ref">
+                                Baseado em: Modelo cognitivo de Clark e Wells, estudos de neuroimagem social e protocolos de TCC para ansiedade social.
+                            </div>
+                        `
+                    }
+        ,'raiva': {
+    title: 'Raiva',
+    content: `
+        <p><strong>O que você pode estar sentindo:</strong> Irritabilidade, frustração, tensão muscular, aumento do batimento cardíaco, impulsividade, pensamentos hostis, vontade de "explodir".</p>
+        
+        <h4>🧠 Base Científica</h4>
+        <p>A raiva ativa a <strong>amígdala</strong> (centro de ameaça) e o eixo HPA (resposta de "luta ou fuga"), liberando adrenalina e cortisol. O <strong>córtex pré-frontal</strong>, responsável pelo julgamento e controle de impulsos, tenta modular essa resposta, mas pode ser "sequestrado" pela intensidade da emoção.</p>
+        
+        <h4>⚡ Estratégias Imediatas</h4>
+        <ul>
+            <li><strong>Pausa estratégica:</strong> Afaste-se da situação por alguns minutos para diminuir a ativação fisiológica.</li>
+            <li><strong>Respiração lenta e profunda:</strong> Sinaliza ao cérebro para desativar a resposta de "luta ou fuga".</li>
+            <li><strong>Mudança de foco sensorial:</strong> Concentre-se em 5 coisas que você pode ver ou ouvir para se ancorar no presente.</li>
+            <li><strong>Nomear a emoção:</strong> Dizer "estou sentindo raiva" ajuda o córtex pré-frontal a retomar o controle.</li>
+        </ul>
+        
+        <h4>🌱 Tratamento</h4>
+        <ul>
+            <li><strong>TCC para Controle da Raiva:</strong> Identifica gatilhos e reestrutura pensamentos hostis.</li>
+            <li><strong>Terapia Focada na Compaixão (TFC):</strong> Desenvolve uma postura de autocompaixão para lidar com as causas da raiva.</li>
+            <li><strong>Treinamento de assertividade:</strong> Aprende a comunicar necessidades de forma eficaz, sem agressividade.</li>
+            <li><strong>Mindfulness:</strong> Aumenta a consciência sobre os primeiros sinais da raiva, permitindo uma intervenção precoce.</li>
+        </ul>
+        
+        <div class="scientific-ref">
+            Baseado em: Modelos de neurociência afetiva (Jaak Panksepp), Terapia Cognitivo-Comportamental (TCC) e Terapia Focada na Compaixão (Paul Gilbert).
+        </div>
+    `
+                }
+                ,'solidao': {
+    title: 'Solidão',
+    content: `
+        <p><strong>O que você pode estar sentindo:</strong> Sentimento de vazio, desconexão, incompreensão, tristeza profunda, baixa autoestima, desejo de contato humano, mas com dificuldade ou medo de iniciar.</p>
+        
+        <h4>🧠 Base Científica</h4>
+        <p>A solidão é um sinal de sobrevivência, similar à fome. Neurocientificamente, ela está associada a uma maior vigilância a ameaças sociais (hiperativação da <strong>amígdala</strong>) e a uma menor ativação do <strong>estriado ventral</strong>, área ligada à recompensa e motivação para interagir socialmente.</p>
+        
+        <h4>⚡ Estratégias Imediatas</h4>
+        <ul>
+            <li><strong>Qualidade sobre quantidade:</strong> Foque em uma conversa significativa com uma pessoa de confiança.</li>
+            <li><strong>Ação altruísta:</strong> Ajudar alguém ou fazer um trabalho voluntário pode gerar um senso de propósito e conexão.</li>
+            <li><strong>Interesses compartilhados:</strong> Participe de um grupo (online ou presencial) com base em um hobby seu.</li>
+            <li><strong>Reinterpretar a solidão:</strong> Tente ver um tempo sozinho como "solitude", uma oportunidade para autoconhecimento.</li>
+        </ul>
+        
+        <h4>🌱 Tratamento</h4>
+        <ul>
+            <li><strong>TCC para Solidão:</strong> Aborda pensamentos negativos sobre si mesmo e sobre os outros que perpetuam o isolamento.</li>
+            <li><strong>Terapia Interpessoal (TIP):</strong> Foca em melhorar a qualidade dos relacionamentos e as habilidades sociais.</li>
+            <li><strong>Psicoterapia de Grupo:</strong> Oferece um ambiente seguro para praticar interações e sentir pertencimento.</li>
+            <li><strong>Ativação Comportamental:</strong> Incentiva a participação em atividades que tragam prazer e oportunidade de interação.</li>
+        </ul>
+        
+        <div class="scientific-ref">
+            Baseado em: Modelo neurocognitivo da solidão (John Cacioppo), teorias da necessidade de pertencimento (Baumeister & Leary) e TCC.
+        </div>
+    `}
+    ,'procrastinacao': {
+    title: 'Procrastinação',
+    content: `
+        <p><strong>O que você pode estar sentindo:</strong> Ansiedade ao pensar em uma tarefa, culpa por adiar, ciclo de "vou fazer amanhã", dificuldade em iniciar, busca por distrações mais prazerosas.</p>
+        
+        <h4>🧠 Base Científica</h4>
+        <p>A procrastinação é uma batalha entre o <strong>sistema límbico</strong> (que busca prazer imediato e evita o desconforto) e o <strong>córtex pré-frontal</strong> (responsável pelo planejamento e futuro). Ao adiar uma tarefa aversiva, o sistema límbico recebe um alívio temporário, reforçando o hábito de procrastinar.</p>
+        
+        <h4>⚡ Estratégias Imediatas</h4>
+        <ul>
+            <li><strong>Regra dos 2 minutos:</strong> Se uma tarefa leva menos de 2 minutos, faça-a agora.</li>
+            <li><strong>Dividir a tarefa:</strong> Quebre uma tarefa grande em passos minúsculos e comece pelo mais fácil.</li>
+            <li><strong>Técnica Pomodoro:</strong> Trabalhe com foco total por 25 minutos e depois faça uma pausa de 5 minutos.</li>
+            <li><strong>"Empacotamento de tentações":</strong> Combine a tarefa que você está evitando com algo que você gosta (ex: ouvir um podcast enquanto arruma a casa).</li>
+        </ul>
+        
+        <h4>🌱 Tratamento</h4>
+        <ul>
+            <li><strong>TCC para Procrastinação:</strong> Modifica crenças disfuncionais (ex: "preciso estar inspirado para começar") e desenvolve habilidades de gerenciamento de tempo.</li>
+            <li><strong>Terapia de Aceitação e Compromisso (ACT):</strong> Ajuda a agir de acordo com seus valores, mesmo na presença de desconforto.</li>
+            <li><strong>Ativação Comportamental:</strong> Foca em aumentar o engajamento em atividades produtivas e recompensadoras.</li>
+        </ul>
+        
+        <div class="scientific-ref">
+            Baseado em: Pesquisas sobre regulação emocional e temporal (Tim Pychyl, Fuschia Sirois) e modelos da TCC e ACT.
+        </div>
+    `
+}
+,'autocobranca': {
+    title: 'Autocobrança Excessiva',
+    content: `
+        <p><strong>O que você pode estar sentindo:</strong> Perfeccionismo, medo de falhar, ansiedade de desempenho, sensação de nunca ser bom o suficiente, autocrítica severa, esgotamento (burnout).</p>
+        
+        <h4>🧠 Base Científica</h4>
+        <p>A autocobrança está ligada a um <strong>córtex pré-frontal</strong> hiperativo (planejamento e autocrítica) e a uma maior sensibilidade do sistema de detecção de erros no <strong>córtex cingulado anterior</strong>. Há também uma menor ativação de sistemas ligados à autocompaixão e ao contentamento.</p>
+        
+        <h4>⚡ Estratégias Imediatas</h4>
+        <ul>
+            <li><strong>Teste de realidade:</strong> Pergunte-se: "Qual é a evidência de que eu não sou bom o suficiente?".</li>
+            <li><strong>A regra do "bom o suficiente":</strong> Defina um critério realista para a conclusão de uma tarefa e pare ao atingi-lo.</li>
+            <li><strong>Voz compassiva:</strong> Pergunte-se: "O que eu diria a um amigo querido na mesma situação?".</li>
+            <li><strong>Foco no processo, não no resultado:</strong> Celebre o esforço e o aprendizado, independentemente do resultado final.</li>
+        </ul>
+        
+        <h4>🌱 Tratamento</h4>
+        <ul>
+            <li><strong>Terapia Focada na Compaixão (TFC):</strong> Desenvolve a capacidade de se autoacalmar e se tratar com gentileza, em vez de crítica.</li>
+            <li><strong>TCC para Perfeccionismo:</strong> Desafia padrões de pensamento "tudo ou nada" e a crença de que o valor pessoal depende do desempenho.</li>
+            <li><strong>Terapia de Aceitação e Compromisso (ACT):</strong> Ajuda a aceitar a imperfeição e a se comprometer com ações valiosas, apesar do medo de falhar.</li>
+        </ul>
+        
+        <div class="scientific-ref">
+            Baseado em: Modelos de perfeccionismo (Hewitt & Flett), Terapia Focada na Compaixão (Paul Gilbert) e TCC.
+        </div>
+    `
+}
+,'Síndrome do impostor': {
+    title: 'Síndrome do Impostor',
+    content: `
+        <p><strong>O que você pode estar sentindo:</strong> Sensação de ser uma fraude, medo de ser "descoberto", atribuição de sucessos à sorte ou ao acaso, minimização de suas conquistas, ansiedade e dúvida constante sobre sua competência.</p>
+        
+        <h4>🧠 Base Científica</h4>
+        <p>A Síndrome do Impostor não é um diagnóstico, mas um padrão psicológico. Envolve dissonância cognitiva entre as evidências externas de sucesso e a crença interna de inadequação. Pode estar ligada a vieses cognitivos, como o <strong>foco atencional em falhas</strong> e a dificuldade em internalizar e atualizar as crenças sobre si mesmo (memória autobiográfica).</p>
+        
+        <h4>⚡ Estratégias Imediatas</h4>
+        <ul>
+            <li><strong>Crie um "arquivo de evidências":</strong> Guarde e-mails, feedbacks e elogios positivos para ler em momentos de dúvida.</li>
+            <li><strong>Fale sobre isso:</strong> Compartilhar esse sentimento com mentores ou colegas de confiança pode revelar que ele é muito comum.</li>
+            <li><strong>Diferencie sentimentos de fatos:</strong> Reconheça: "Eu me sinto como uma fraude, mas o fato é que entreguei o projeto com sucesso".</li>
+            <li><strong>Adote uma mentalidade de crescimento:</strong> Veja-se como um "trabalho em progresso" que está sempre aprendendo, em vez de alguém que precisa ser perfeito.</li>
+        </ul>
+        
+        <h4>🌱 Tratamento</h4>
+        <ul>
+            <li><strong>TCC:</strong> Ajuda a identificar e reestruturar as distorções cognitivas que alimentam o sentimento de fraude.</li>
+            <li><strong>Terapia Focada na Compaixão (TFC):</strong> Trabalha a aceitação das próprias qualidades e a redução da autocrítica.</li>
+            <li><strong>Mentoria ou Coaching:</strong> Ter um guia experiente pode ajudar a validar competências e a navegar desafios profissionais.</li>
+            <li><strong>Psicoterapia de Grupo:</strong> Normaliza a experiência ao ver que outras pessoas bem-sucedidas compartilham os mesmos sentimentos.</li>
+        </ul>
+        
+        <div class="scientific-ref">
+            Baseado em: Pesquisas originais de Pauline Clance e Suzanne Imes, teoria da dissonância cognitiva e modelos da TCC.
+        </div>
+    `
+}
+,'trauma': {
+    title: 'Trauma',
+    content: `
+        <p><strong>O que você pode estar sentindo:</strong> Revivência do evento (flashbacks, pesadelos), hipervigilância (estar sempre em alerta), evitação de gatilhos, alterações de humor (irritabilidade, culpa, vergonha), sensação de anestesia emocional.</p>
+        
+        <h4>🧠 Base Científica</h4>
+        <p>O trauma "desregula" o sistema de resposta ao estresse. A <strong>amígdala</strong> (alarme) fica hiperativa, enquanto o <strong>hipocampo</strong> (memória de contexto) e o <strong>córtex pré-frontal</strong> (regulação) ficam hipoativos. Isso faz com que a memória do trauma não seja integrada como um evento do passado, mas sim revivida como uma ameaça presente.</p>
+        
+        <h4>⚡ Estratégias Imediatas (Foco em Aterramento)</h4>
+        <ul>
+            <li><strong>Técnica 5-4-3-2-1:</strong> Nomeie 5 coisas que vê, 4 que pode tocar, 3 que pode ouvir, 2 que pode cheirar e 1 que pode provar.</li>
+            <li><strong>Aterramento físico:</strong> Sinta seus pés firmes no chão, segure um objeto gelado ou pressione as palmas das mãos uma contra a outra.</li>
+            <li><strong>Autoafirmação orientada no tempo:</strong> Diga em voz alta: "Meu nome é [Seu Nome]. Hoje é [Data]. Eu estou seguro(a) agora."</li>
+            <li><strong>Respiração abdominal:</strong> Coloque a mão na barriga e sinta-a subir e descer, focando na sensação física.</li>
+        </ul>
+        
+        <h4>🌱 Tratamento</h4>
+        <ul>
+            <li><strong>EMDR (Dessensibilização e Reprocessamento por Meio dos Movimentos Oculares):</strong> Ajuda o cérebro a reprocessar e integrar as memórias traumáticas.</li>
+            <li><strong>Terapia de Exposição Prolongada (PE):</strong> Exposição gradual e segura às memórias e gatilhos do trauma para reduzir a resposta de medo.</li>
+            <li><strong>Experiência Somática (Somatic Experiencing):</strong> Foca em liberar a energia do trauma presa no corpo através da consciência das sensações corporais.</li>
+            <li><strong>TCC Focada no Trauma (TF-CBT):</strong> Modifica pensamentos e crenças negativas geradas pelo evento traumático.</li>
+        </ul>
+        
+        <div class="scientific-ref">
+            Baseado em: Neurobiologia do TEPT (Bessel van der Kolk, Rachel Yehuda), modelos de processamento de memória e protocolos de terapias baseadas em evidências como EMDR e PE.
+        </div>
+    `
+}
+                };
+
+                emotionCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const emotion = card.dataset.emotion;
+                        const data = emotionData[emotion];
+                        
+                        if (data) {
+                            modalTitle.textContent = data.title;
+                            modalBody.innerHTML = data.content;
+                            openModal(emotionModal);
+                            
+                            // Achievement for exploring emotions
+                            unlockAchievement('emotion-explorer', '🧠 Explorador Emocional');
+                        }
+                    });
+                });
+
+                closeModal.addEventListener('click', () => closeModalFunc(emotionModal));
+                emotionModal.addEventListener('click', (e) => {
+                    if (e.target === emotionModal) closeModalFunc(emotionModal);
+                });
+            }
+
+            // === ENHANCED MINDFULNESS EXERCISES ===
+            function setupMindfulnessExercises() {
+                const exerciseTimers = document.querySelectorAll('.exercise-timer');
+                const exerciseModal = document.getElementById('exercise-modal');
+                const exerciseTitle = document.getElementById('exercise-modal-title');
+                const exerciseTimer = document.getElementById('exercise-timer');
+                const exerciseInstructions = document.getElementById('exercise-instructions');
+                const startBtn = document.getElementById('start-exercise');
+                const pauseBtn = document.getElementById('pause-exercise');
+                const stopBtn = document.getElementById('stop-exercise');
+                const closeBtn = document.getElementById('close-exercise-modal');
+
+                let currentExercise = null;
+                let exerciseInterval = null;
+                let timeRemaining = 0;
+                let isPaused = false;
+
+                const exerciseData = {
+                    'breathing-478': {
+                        title: 'Respiração 4-7-8',
+                        instructions: 'Sente-se confortavelmente. Inspire pelo nariz por 4 segundos, segure a respiração por 7 segundos, e expire pela boca por 8 segundos. Esta técnica ativa o sistema nervoso parassimpático.'
+                    },
+                    bodyscan: {
+                        title: 'Body Scan Progressivo',
+                        instructions: 'Deite-se confortavelmente. Comece pelos dedos dos pés e vá subindo pelo corpo, observando cada parte sem julgamento. Apenas note as sensações presentes, tensão ou relaxamento.'
+                    },
+                    gratitude: {
+                        title: 'Meditação da Gratidão',
+                        instructions: 'Pense em três coisas pelas quais você é grato hoje. Podem ser pequenas: o sabor do café, um sorriso, o ar que você respira. Sinta a gratidão expandindo em seu coração.'
+                    },
+                    sound: {
+                        title: 'Meditação Sonora',
+                        instructions: 'Sente-se confortavelmente e feche os olhos. Escute todos os sons ao seu redor - próximos e distantes. Use os sons como âncora para o momento presente.'
+                    },
+                    rain: {
+                        title: 'Mindfulness RAIN',
+                        instructions: 'RAIN: Reconheça o que está acontecendo, Aceite a experiência, Investigue com gentileza, e pratique Não-identificação. Use esta técnica com emoções difíceis.'
+                    },
+                    ice: {
+                        title: 'Técnica do Gelo',
+                        instructions: 'Segure um cubo de gelo ou coloque as mãos em água fria. Foque completamente na sensação. Esta técnica ativa o reflexo de mergulho mamífero, reduzindo ansiedade rapidamente.'
+                    }
+                };
+
+                function formatTime(seconds) {
+                    const mins = Math.floor(seconds / 60);
+                    const secs = seconds % 60;
+                    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                }
+
+                function startTimer() {
+                    exerciseInterval = setInterval(() => {
+                        if (!isPaused) {
+                            timeRemaining--;
+                            exerciseTimer.textContent = formatTime(timeRemaining);
+                            
+                            if (timeRemaining <= 0) {
+                                clearInterval(exerciseInterval);
+                                exerciseTimer.textContent = "Concluído! 🎉";
+                                startBtn.style.display = 'inline-flex';
+                                pauseBtn.style.display = 'none';
+                                stopBtn.style.display = 'none';
+                                
+                                // Achievement for completing exercise
+                                unlockAchievement('mindful-practitioner', '🧘 Praticante Mindful');
+                                
+                                if (navigator.vibrate) {
+                                    navigator.vibrate([200, 100, 200]);
+                                }
+                            }
+                        }
+                    }, 1000);
+                }
+
+                exerciseTimers.forEach(timer => {
+                    timer.addEventListener('click', () => {
+                        const exercise = timer.dataset.exercise;
+                        const duration = parseInt(timer.dataset.duration);
+                        
+                        currentExercise = exercise;
+                        timeRemaining = duration;
+                        isPaused = false;
+                        
+                        const data = exerciseData[exercise];
+                        exerciseTitle.textContent = data.title;
+                        exerciseInstructions.textContent = data.instructions;
+                        exerciseTimer.textContent = formatTime(timeRemaining);
+                        
+                        startBtn.style.display = 'inline-flex';
+                        pauseBtn.style.display = 'none';
+                        stopBtn.style.display = 'none';
+                        
+                        openModal(exerciseModal);
+                    });
+                });
+
+                startBtn.addEventListener('click', () => {
+                    startTimer();
+                    startBtn.style.display = 'none';
+                    pauseBtn.style.display = 'inline-flex';
+                    stopBtn.style.display = 'inline-flex';
+                    isPaused = false;
+                });
+
+                pauseBtn.addEventListener('click', () => {
+                    isPaused = !isPaused;
+                    pauseBtn.textContent = isPaused ? '▶️ Continuar' : '⏸️ Pausar';
+                });
+
+                stopBtn.addEventListener('click', () => {
+                    clearInterval(exerciseInterval);
+                    closeModalFunc(exerciseModal);
+                });
+
+                closeBtn.addEventListener('click', () => {
+                    clearInterval(exerciseInterval);
+                    closeModalFunc(exerciseModal);
+                });
+
+                exerciseModal.addEventListener('click', (e) => {
+                    if (e.target === exerciseModal) {
+                        clearInterval(exerciseInterval);
+                        closeModalFunc(exerciseModal);
+                    }
+                });
+            }
+
+            // === ENHANCED SENSORY ROOM ===
+            function setupSensoryRoom() {
+                const sensoryButtons = document.querySelectorAll('.sensory-btn');
+                let currentAudio = null;
+                let isPlaying = false;
+
+                // Audio context for better control
+                let audioContext = null;
+                let audioBuffer = null;
+                let source = null;
+
+                const audioSources = {
+                    'nature-sounds': 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+                    'rain-sounds': 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+                    'forest-sounds': 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+                    'fire-sounds': 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+                    'cafe-sounds': 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+                    'binaural-beats': 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'
+                };
+
+                sensoryButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const action = btn.id;
+
+                        if (action === 'stop-sounds') {
+                            stopAllSounds();
+                            return;
+                        }
+
+                        if (audioSources[action]) {
+                            playAmbientSound(action, btn);
+                        } else {
+                            handleVisualEffects(action, btn);
+                        }
+                    });
+                });
+
+                function playAmbientSound(soundId, button) {
+                    stopAllSounds();
+                    
+                    // Visual feedback
+                    button.classList.add('active', 'pulse');
+                    
+                    // Simulate audio playback (replace with real implementation)
+                    console.log(`Playing: ${soundId}`);
+                    
+                    // Achievement for using sensory room
+                    unlockAchievement('sensory-explorer', '🎧 Explorador Sensorial');
+                    
+                    setTimeout(() => {
+                        button.classList.remove('pulse');
+                    }, 2000);
+                }
+
+                function handleVisualEffects(effectId, button) {
+                    button.classList.add('active');
+                    
+                    switch(effectId) {
+                        case 'dim-lights':
+                            document.body.style.filter = document.body.style.filter === 'brightness(0.7)' ? 'brightness(1)' : 'brightness(0.7)';
+                            break;
+                        case 'breathing-visual':
+                            startBreathingVisual();
+                            break;
+                        case 'color-therapy':
+                            startColorTherapy();
+                            break;
+                    }
+                    
+                    setTimeout(() => button.classList.remove('active'), 3000);
+                }
+
+                function stopAllSounds() {
+                    sensoryButtons.forEach(btn => btn.classList.remove('active'));
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        currentAudio = null;
+                    }
+                }
+
+                function startBreathingVisual() {
+                    const overlay = document.createElement('div');
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: radial-gradient(circle, rgba(99,102,241,0.3) 0%, transparent 70%);
+                        z-index: 999;
+                        pointer-events: none;
+                        animation: breatheVisual 4s ease-in-out infinite;
+                    `;
+                    
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes breatheVisual {
+                            0%, 100% { opacity: 0.1; transform: scale(0.8); }
+                            50% { opacity: 0.3; transform: scale(1.2); }
+                        }
+                    `;
+                    
+                    document.head.appendChild(style);
+                    document.body.appendChild(overlay);
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(overlay);
+                        document.head.removeChild(style);
+                    }, 30000);
+                }
+
+                function startColorTherapy() {
+                    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd'];
+                    let colorIndex = 0;
+                    
+                    const overlay = document.createElement('div');
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: ${colors[0]};
+                        opacity: 0.1;
+                        z-index: 999;
+                        pointer-events: none;
+                        transition: background-color 2s ease;
+                    `;
+                    
+                    document.body.appendChild(overlay);
+                    
+                    const colorInterval = setInterval(() => {
+                        colorIndex = (colorIndex + 1) % colors.length;
+                        overlay.style.backgroundColor = colors[colorIndex];
+                    }, 3000);
+                    
+                    setTimeout(() => {
+                        clearInterval(colorInterval);
+                        document.body.removeChild(overlay);
+                    }, 30000);
+                }
+            }
+
+            // === ENHANCED HOPE WALL ===
+            function setupHopeWall() {
+                const addHopeBtn = document.getElementById('add-hope-btn');
+                const hopeModal = document.getElementById('hope-modal');
+                const closeHopeModal = document.getElementById('close-hope-modal');
+                const submitHopeNote = document.getElementById('submit-hope-note');
+                const hopeGrid = document.getElementById('hope-grid');
+
+                addHopeBtn.addEventListener('click', () => openModal(hopeModal));
+                closeHopeModal.addEventListener('click', () => closeModalFunc(hopeModal));
+
+                submitHopeNote.addEventListener('click', () => {
+                    const message = document.getElementById('hope-message').value.trim();
+                    const signature = document.getElementById('hope-signature').value.trim() || 'Alguém que se importa';
+
+                    if (message) {
+                        const hopeNote = document.createElement('div');
+                        hopeNote.className = 'hope-note fade-in';
+                        hopeNote.innerHTML = `
+                            <p class="hope-message">"${message}"</p>
+                            <div class="hope-signature">- ${signature}</div>
+                        `;
+
+                        hopeGrid.appendChild(hopeNote);
+
+                        // Clear form
+                        document.getElementById('hope-message').value = '';
+                        document.getElementById('hope-signature').value = '';
+                        
+                        closeModalFunc(hopeModal);
+
+                        // Achievement for sharing hope
+                        unlockAchievement('hope-spreader', '💌 Mensageiro da Esperança');
+
+                        // Scroll to new note
+                        setTimeout(() => {
+                            hopeNote.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            hopeNote.classList.add('glow');
+                            setTimeout(() => hopeNote.classList.remove('glow'), 3000);
+                        }, 300);
+                    }
+                });
+
+                hopeModal.addEventListener('click', (e) => {
+                    if (e.target === hopeModal) closeModalFunc(hopeModal);
+                });
+            }
+
+            // === ENHANCED TOOLS SECTION ===
+            function setupToolsSection() {
+                setupJournalTool();
+                setupBreathingTool();
+                setupCognitiveTool();
+                setupCompassionTool();
+                setupEmergencyKit();
+            }
+
+            function setupJournalTool() {
+                const journalPromptBtn = document.getElementById('journal-prompt-btn');
+                const journalPrompt = document.getElementById('journal-prompt');
+                const journalTextarea = document.getElementById('journal-textarea');
+                const saveJournalBtn = document.getElementById('save-journal');
+                const journalHistoryBtn = document.getElementById('journal-history');
+
+                const prompts = [
+                    "O que meu corpo está tentando me dizer hoje?",
+                    "Pelo que sou genuinamente grato neste momento?",
+                    "Qual é uma pequena vitória que posso celebrar hoje?",
+                    "Como posso ser mais gentil comigo mesmo agora?",
+                    "O que preciso deixar ir para seguir em frente?",
+                    "Que padrão de pensamento não me serve mais?",
+                    "Como a gentileza se manifestou na minha vida hoje?",
+                    "O que aprendi sobre mim mesmo esta semana?",
+                    "Qual medo posso enfrentar com coragem hoje?",
+                    "Como posso nutrir minha alma hoje?",
+                    "O que me faz sentir mais vivo e presente?",
+                    "Que qualidade minha posso reconhecer e valorizar?",
+                    "Como posso transformar um desafio em oportunidade?",
+                    "O que meu eu futuro gostaria que eu soubesse agora?",
+                    "Como posso criar mais significado na minha vida?"
+                ];
+
+                journalPromptBtn.addEventListener('click', () => {
+                    const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+                    journalPrompt.textContent = randomPrompt;
+                    journalPromptBtn.innerHTML = 'Nova Pergunta <span class="spinner"></span>';
+                    
+                    setTimeout(() => {
+                        journalPromptBtn.innerHTML = 'Gerar Pergunta';
+                    }, 1000);
+                });
+
+                saveJournalBtn.addEventListener('click', () => {
+                    const entry = journalTextarea.value.trim();
+                    if (entry) {
+                        const journalEntries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+                        const newEntry = {
+                            id: Date.now(),
+                            date: new Date().toISOString(),
+                            prompt: journalPrompt.textContent,
+                            content: entry
+                        };
+                        
+                        journalEntries.unshift(newEntry);
+                        localStorage.setItem('journalEntries', JSON.stringify(journalEntries));
+                        
+                        journalTextarea.value = '';
+                        journalPrompt.textContent = 'Entrada salva! Clique para uma nova pergunta.';
+                        
+                        // Achievement for journaling
+                        unlockAchievement('reflective-writer', '📝 Escritor Reflexivo');
+                        
+                        saveJournalBtn.textContent = '✅ Salvo!';
+                        setTimeout(() => {
+                            saveJournalBtn.textContent = '💾 Salvar';
+                        }, 2000);
+                    }
+                });
+
+                journalHistoryBtn.addEventListener('click', () => {
+                    const entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+                    if (entries.length === 0) {
+                        alert('Você ainda não tem entradas no diário.');
+                        return;
+                    }
+                    
+                    // Create a simple history view
+                    const historyHtml = entries.slice(0, 5).map(entry => `
+                        <div style="margin-bottom: var(--space-4); padding: var(--space-4); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+                            <div style="font-size: 0.875rem; color: var(--text-tertiary); margin-bottom: var(--space-2);">
+                                ${new Date(entry.date).toLocaleDateString('pt-BR')}
+                            </div>
+                            <div style="font-weight: 600; margin-bottom: var(--space-2);">${entry.prompt}</div>
+                            <div style="color: var(--text-secondary);">${entry.content.substring(0, 150)}${entry.content.length > 150 ? '...' : ''}</div>
+                        </div>
+                    `).join('');
+                    
+                    // Show in a simple modal (you could enhance this)
+                    alert(`Suas últimas entradas:\n\n${entries.slice(0, 3).map(e => `${new Date(e.date).toLocaleDateString()}: ${e.content.substring(0, 100)}...`).join('\n\n')}`);
+                });
+            }
+
+            function setupBreathingTool() {
+                const startBreathingBtn = document.getElementById('start-breathing');
+                const stopBreathingBtn = document.getElementById('stop-breathing');
+                const breathingCircle = document.getElementById('breathing-circle');
+                const breathingText = document.getElementById('breathing-text');
+
+                let breathingInterval = null;
+                let breathingActive = false;
+
+                startBreathingBtn.addEventListener('click', () => {
+                    if (breathingActive) return;
+                    
+                    breathingActive = true;
+                    startBreathingBtn.style.display = 'none';
+                    stopBreathingBtn.style.display = 'inline-flex';
+                    
+                    runBreathingCycle();
+                    breathingInterval = setInterval(runBreathingCycle, 16000); // 4s in + 4s hold + 8s out
+                    
+                    // Achievement for breathing exercise
+                    unlockAchievement('breath-master', '🫁 Mestre da Respiração');
+                });
+
+                stopBreathingBtn.addEventListener('click', () => {
+                    stopBreathing();
+                });
+
+                function runBreathingCycle() {
+                    breathingText.textContent = 'Inspire...';
+                    breathingCircle.className = 'breathing-circle breathing-inhale';
+                    
+                    setTimeout(() => {
+                        breathingText.textContent = 'Segure...';
+                        breathingCircle.className = 'breathing-circle breathing-hold';
+                    }, 4000);
+                    
+                    setTimeout(() => {
+                        breathingText.textContent = 'Expire...';
+                        breathingCircle.className = 'breathing-circle breathing-exhale';
+                    }, 8000);
+                }
+
+                function stopBreathing() {
+                    breathingActive = false;
+                    clearInterval(breathingInterval);
+                    breathingText.textContent = 'Clique para iniciar';
+                    breathingCircle.className = 'breathing-circle';
+                    startBreathingBtn.style.display = 'inline-flex';
+                    stopBreathingBtn.style.display = 'none';
+                }
+            }
+
+            function setupCognitiveTool() {
+                const startThoughtRecordBtn = document.getElementById('start-thought-record');
+                const thoughtRecord = document.getElementById('thought-record');
+
+                startThoughtRecordBtn.addEventListener('click', () => {
+                    if (thoughtRecord.style.display === 'none') {
+                        thoughtRecord.style.display = 'block';
+                        startThoughtRecordBtn.textContent = 'Ocultar Registro';
+                    } else {
+                        thoughtRecord.style.display = 'none';
+                        startThoughtRecordBtn.textContent = 'Iniciar Registro';
+                    }
+                });
+            }
+
+            function setupCompassionTool() {
+                const compassionPhrase = document.getElementById('compassion-phrase');
+                const newPhraseBtn = document.getElementById('new-compassion-phrase');
+
+                const phrases = [
+                    "Eu mereço gentileza, especialmente de mim mesmo.",
+                    "Está tudo bem não estar bem. Isso também vai passar.",
+                    "Eu sou humano e cometer erros faz parte da experiência humana.",
+                    "Posso me dar permissão para descansar quando precisar.",
+                    "Minha sensibilidade é uma força, não uma fraqueza.",
+                    "Eu estou fazendo o melhor que posso com os recursos que tenho agora.",
+                    "Não preciso ser perfeito para ser amado e aceito.",
+                    "Posso escolher pensamentos que me nutrem em vez de me criticam.",
+                    "Cada dia é uma nova oportunidade para começar de novo.",
+                    "Eu sou digno de amor e cuidado, incluindo o meu próprio.",
+                    "Meus sentimentos são válidos e merecem ser ouvidos.",
+                    "Posso ser paciente comigo mesmo enquanto cresço e aprendo.",
+                    "Minha jornada é única e não precisa ser comparada com a de outros.",
+                    "Tenho o direito de estabelecer limites saudáveis.",
+                    "Cada pequeno passo que dou é uma vitória que merece ser celebrada."
+                ];
+
+                newPhraseBtn.addEventListener('click', () => {
+                    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+                    compassionPhrase.textContent = `"${randomPhrase}"`;
+                    compassionPhrase.classList.add('fade-in');
+                    
+                    setTimeout(() => {
+                        compassionPhrase.classList.remove('fade-in');
+                    }, 600);
+                });
+            }
+
+            function setupEmergencyKit() {
+                const groundingBtn = document.getElementById('grounding-5432');
+                const iceBtn = document.getElementById('ice-technique');
+                const safePlaceBtn = document.getElementById('safe-place');
+                const emergencyContactsBtn = document.getElementById('emergency-contacts');
+
+                groundingBtn.addEventListener('click', () => {
+                    alert('Técnica 5-4-3-2-1:\n\n5 coisas que você VÊ\n4 coisas que você TOCA\n3 coisas que você OUVE\n2 coisas que você CHEIRA\n1 coisa que você SENTE O GOSTO\n\nUse seus sentidos para se conectar com o presente.');
+                });
+
+                iceBtn.addEventListener('click', () => {
+                    alert('Técnica do Gelo:\n\n1. Segure um cubo de gelo na mão\n2. Ou coloque as mãos em água fria\n3. Foque completamente na sensação\n4. Respire profundamente\n\nIsso ativa o reflexo de mergulho mamífero, reduzindo ansiedade rapidamente.');
+                });
+
+                safePlaceBtn.addEventListener('click', () => {
+                    alert('Lugar Seguro Mental:\n\nFeche os olhos e visualize um lugar onde você se sente completamente seguro e em paz. Pode ser real ou imaginário.\n\nDetalhe:\n- Como é esse lugar?\n- Que cores você vê?\n- Que sons você ouve?\n- Como você se sente lá?\n\nGuarde essa imagem para momentos difíceis.');
+                });
+
+                emergencyContactsBtn.addEventListener('click', () => {
+                    const contacts = `Contatos de Emergência:
+
+🚨 EMERGÊNCIA IMEDIATA:
+• CVV: 188 (24h, gratuito)
+• SAMU: 192
+• Polícia: 190
+
+💬 APOIO EMOCIONAL:
+• CVV Chat: cvv.org.br/chat
+• Mapa da Saúde Mental: mapasaudemental.com.br
+
+🏥 ATENDIMENTO:
+• CAPS mais próximo
+• UBS da sua região
+• Pronto Socorro (casos graves)
+
+Lembre-se: Pedir ajuda é um ato de coragem!`;
+                    
+                    alert(contacts);
+                });
+            }
+
+            // === SOS SYSTEM ===
+            function setupSOSSystem() {
+                const sosBtn = document.getElementById('sos-btn');
+                const sosModal = document.getElementById('sos-modal');
+                const closeSosModal = document.getElementById('close-sos-modal');
+                const startSosBreathing = document.getElementById('start-sos-breathing');
+                const sosBreathingCircle = document.getElementById('sos-breathing-circle');
+                const sosBreathingText = document.getElementById('sos-breathing-text');
+
+                let sosBreathingInterval = null;
+
+                sosBtn.addEventListener('click', () => {
+                    openModal(sosModal);
+                    // Achievement for using SOS
+                    unlockAchievement('help-seeker', '🆘 Buscador de Ajuda');
+                });
+
+                closeSosModal.addEventListener('click', () => {
+                    clearInterval(sosBreathingInterval);
+                    closeModalFunc(sosModal);
+                });
+
+                startSosBreathing.addEventListener('click', () => {
+                    startSOSBreathing();
+                });
+
+                function startSOSBreathing() {
+                    clearInterval(sosBreathingInterval);
+                    
+                    function runSOSCycle() {
+                        sosBreathingText.textContent = 'Inspire pelo nariz...';
+                        sosBreathingCircle.className = 'breathing-circle breathing-inhale';
+                        
+                        setTimeout(() => {
+                            sosBreathingText.textContent = 'Segure...';
+                            sosBreathingCircle.className = 'breathing-circle breathing-hold';
+                        }, 4000);
+                        
+                        setTimeout(() => {
+                            sosBreathingText.textContent = 'Expire pela boca...';
+                            sosBreathingCircle.className = 'breathing-circle breathing-exhale';
+                        }, 7000);
+                        
+                        setTimeout(() => {
+                            sosBreathingText.textContent = 'Você está seguro...';
+                            sosBreathingCircle.className = 'breathing-circle';
+                        }, 15000);
+                    }
+                    
+                    runSOSCycle();
+                    sosBreathingInterval = setInterval(runSOSCycle, 16000);
+                }
+
+                sosModal.addEventListener('click', (e) => {
+                    if (e.target === sosModal) {
+                        clearInterval(sosBreathingInterval);
+                        closeModalFunc(sosModal);
+                    }
+                });
+            }
+
+            // === NAVIGATION ===
+            function setupNavigation() {
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            }
+
+            // === UTILITY FUNCTIONS ===
+            function openModal(modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModalFunc(modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // === ENCOURAGEMENT SYSTEM ===
+            const encouragementMessages = [
+                "🌟 Você está cuidando bem de si mesmo hoje!",
+                "🌱 Cada pequeno passo conta na sua jornada.",
+                "✨ Sua presença aqui já é um ato de coragem.",
+                "💪 Lembre-se: você é mais forte do que imagina.",
+                "🧘‍♀️ Respirar conscientemente é um superpoder.",
+                "💚 Você merece todo o amor e cuidado do mundo.",
+                "🌈 Depois da tempestade, sempre vem o arco-íris.",
+                "🦋 Transformação leva tempo. Seja paciente consigo mesmo.",
+                "🌸 Você está florescendo no seu próprio ritmo.",
+                "⭐ Sua luz interior nunca se apaga, mesmo nos dias difíceis."
+            ];
+
+            // Show encouragement every 10 minutes
+            setInterval(() => {
+                const message = encouragementMessages[Math.floor(Math.random() * encouragementMessages.length)];
+                showEncouragementNotification(message);
+            }, 600000); // 10 minutes
+
+            function showEncouragementNotification(message) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-100%);
+                    background: var(--gradient-primary);
+                    color: white;
+                    padding: var(--space-4) var(--space-6);
+                    border-radius: var(--radius-lg);
+                    box-shadow: var(--shadow-lg);
+                    z-index: 1001;
+                    transition: transform 0.3s ease;
+                    max-width: 400px;
+                    text-align: center;
+                `;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                setTimeout(() => notification.style.transform = 'translateX(-50%) translateY(0)', 100);
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(-50%) translateY(-100%)';
+                    setTimeout(() => document.body.removeChild(notification), 300);
+                }, 5000);
+            }
+
+            // === ACTIVITY TRACKING ===
+            function trackActivity(activityType) {
+                const activities = JSON.parse(localStorage.getItem('userActivities')) || {};
+                const today = new Date().toISOString().split('T')[0];
+                
+                if (!activities[today]) {
+                    activities[today] = [];
+                }
+                
+                if (!activities[today].includes(activityType)) {
+                    activities[today].push(activityType);
+                    localStorage.setItem('userActivities', JSON.stringify(activities));
+                }
+            }
+
+            // Track various activities throughout the app
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('.emotion-card')) {
+                    trackActivity('emotion-exploration');
+                }
+                if (e.target.matches('.exercise-timer')) {
+                    trackActivity('mindfulness-practice');
+                }
+                if (e.target.matches('.mood-option')) {
+                    trackActivity('mood-tracking');
+                }
+                if (e.target.matches('.sensory-btn')) {
+                    trackActivity('sensory-room');
+                }
+            });
+
+            // === ACCESSIBILITY ENHANCEMENTS ===
+            // Keyboard navigation for modals
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const activeModal = document.querySelector('.modal-overlay.active');
+                    if (activeModal) {
+                        closeModalFunc(activeModal);
+                    }
+                }
+            });
+
+            // Focus management for modals
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                modal.addEventListener('transitionend', () => {
+                    if (modal.classList.contains('active')) {
+                        const firstFocusable = modal.querySelector('button, input, textarea, select, a[href]');
+                        if (firstFocusable) {
+                            firstFocusable.focus();
+                        }
+                    }
+                });
+            });
+
+            // === PERFORMANCE OPTIMIZATIONS ===
+            // Lazy load heavy content
+            const lazyElements = document.querySelectorAll('[data-lazy]');
+            const lazyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        // Load heavy content here
+                        lazyObserver.unobserve(element);
+                    }
+                });
+            });
+
+            lazyElements.forEach(el => lazyObserver.observe(el));
+
+            // === FINAL INITIALIZATION ===
+            console.log('🎉 CICATRIZ Enhanced totalmente carregado!');
+            console.log('💡 Recursos disponíveis: Tracking de humor, exercícios de mindfulness, sistema de conquistas, diário terapêutico, sala sensorial e muito mais!');
+            
+            // Show welcome message
+            setTimeout(() => {
+                showEncouragementNotification('🌟 Bem-vindo ao seu refúgio digital! Explore as ferramentas e cuide bem de si.');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
