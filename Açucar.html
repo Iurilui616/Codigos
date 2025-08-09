@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viva com Menos Açúcar — Ferramentas, Ciência e Apoio</title>
+  <meta name="description" content="Ferramentas práticas, baseadas em ciência, para reduzir o consumo compulsivo de açúcar: rastreador diário, plano de emergência, respiração 4-7-8, surfando a vontade e recursos confiáveis." />
+  <style>
+    :root{
+      --bg-1:#0e0f14;
+      --bg-2:#13162b;
+      --bg-3:#1d243d;
+      --card:#141828cc;
+      --muted:#a6b0cf;
+      --text:#e7ecff;
+      --accent:#ff6b6b;
+      --accent-2:#ffd166;
+      --good:#39d98a;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --ring:#8ab4ff;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+      --radius:16px;
+    }
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -20%, #3b82f64d, transparent 60%),
+        radial-gradient(1000px 700px at 110% 20%, #f472b64d, transparent 60%),
+        linear-gradient(120deg, var(--bg-1), var(--bg-2) 60%, var(--bg-3));
+      background-attachment: fixed;
+      overflow-x:hidden;
+    }
+    .skip-link{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      left:1rem; top:1rem; width:auto; height:auto; padding:.5rem .75rem; background:#000; border:1px solid #fff; z-index:9999; border-radius:8px;
+    }
+    a{color:#c6d4ff; text-decoration:none}
+    a:hover{text-decoration:underline}
+    /* Animated aurora background layer */
+    .aurora{
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background: radial-gradient(600px 400px at 60% 10%, #8b5cf64d, transparent),
+                  radial-gradient(500px 300px at 20% 80%, #22d3ee4d, transparent);
+      filter: blur(40px) saturate(120%);
+      animation: aurora 16s ease-in-out infinite alternate;
+    }
+    @keyframes aurora{
+      0%{transform: translateY(-2%) scale(1)}
+      50%{transform: translateY(2%) scale(1.02)}
+      100%{transform: translate(-1%, -1%) scale(1.03)}
+    }
+
+    /* Layout */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px);
+      background: linear-gradient(180deg, #0c0d12e6, #0c0d1200);
+      border-bottom: 1px solid #ffffff1a;
+    }
+    .nav{
+      max-width:1120px; margin:0 auto; padding:1rem 1.25rem; display:flex; align-items:center; gap:1rem;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:10px; background:
+        conic-gradient(from 180deg, #ff6b6b, #ffd166, #22d3ee, #a78bfa, #ff6b6b);
+      animation: spin 12s linear infinite;
+      box-shadow: 0 0 0 1px #ffffff22, 0 8px 30px #00000066;
+    }
+    @keyframes spin{ to{ transform: rotate(360deg) } }
+    .nav ul{
+      margin-left:auto; display:flex; gap:1rem; list-style:none; padding:0;
+    }
+    .nav a.nav-link{
+      display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .75rem; border-radius:10px;
+      background: transparent; border:1px solid transparent; transition:.25s ease;
+    }
+    .nav a.nav-link:hover{ background:#ffffff12; border-color:#ffffff24 }
+    .cta{
+      display:inline-flex; align-items:center; gap:.5rem; padding:.6rem .9rem; border-radius:12px;
+      background: linear-gradient(135deg, #ff6b6b, #ffd166);
+      color:#0b0b0f; font-weight:700; border:1px solid #ffffff44; box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .3s ease, filter .2s ease;
+    }
+    .cta:hover{ transform: translateY(-1px) scale(1.01); filter: brightness(1.05) }
+    .ghost{ background:#ffffff14; color:var(--text) }
+
+    main{max-width:1120px; margin:0 auto; padding:2rem 1.25rem 5rem}
+
+    /* Hero */
+    .hero{
+      display:grid; grid-template-columns:1.15fr .85fr; gap:2rem; align-items:center; padding:2.5rem 0 1rem;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:.5rem; font-size:.85rem; padding:.35rem .6rem; border-radius:999px;
+      background:#00ffd51a; border:1px solid #00ffd54d; color:#9effe7;
+      box-shadow: inset 0 0 20px #00ffd508, 0 4px 20px #00ffd508;
+    }
+    .title{ font-size: clamp(2rem, 6vw, 3.25rem); line-height:1.08; margin:.75rem 0 1rem; letter-spacing:.2px }
+    .subtitle{ color:var(--muted); font-size: clamp(1rem, 2.6vw, 1.125rem) }
+    .hero-actions{ display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.25rem }
+    .glass{
+      background: linear-gradient(180deg, #161b26cc, #0f1320cc);
+      border: 1px solid #ffffff1f; border-radius: var(--radius); box-shadow: var(--shadow);
+    }
+    .hero-card{
+      padding:1rem; display:grid; gap:1rem;
+      transform-style: preserve-3d; perspective:800px;
+      transition: transform .3s ease;
+    }
+    .hero-card:hover{ transform: rotateX(2deg) rotateY(-2deg) translateY(-2px)}
+    .hero-metrics{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.75rem }
+    .metric{ padding:.9rem; border-radius:12px; background:#ffffff0d; border:1px solid #ffffff1a; text-align:center }
+    .metric .v{ font-weight:800; font-size:1.15rem }
+    .metric .k{ font-size:.8rem; color:var(--muted) }
+    .orb{
+      position:relative; aspect-ratio:1; border-radius:24px; overflow:hidden;
+      background: radial-gradient(120px 100px at 70% 30%, #ffffff2e, #ffffff00),
+                  conic-gradient(from 220deg, #ffd166, #ff6b6b, #a78bfa, #22d3ee, #ffd166);
+      filter: saturate(140%); border:1px solid #ffffff2e;
+      animation: float 8s ease-in-out infinite;
+      box-shadow: inset 0 0 60px #00000066, 0 20px 60px #0000006f;
+    }
+    @keyframes float{
+      0%,100%{ transform: translateY(0) }
+      50%{ transform: translateY(-12px) }
+    }
+
+    /* Sections */
+    section{ margin-top:3rem }
+    .section-title{ font-size:1.75rem; margin:0 0 .5rem }
+    .section-subtitle{ color:var(--muted); margin:0 0 1.25rem }
+
+    /* Cards grid */
+    .grid{ display:grid; gap:1rem }
+    @media (min-width: 860px){
+      .grid.cols-3{ grid-template-columns: repeat(3,minmax(0,1fr)) }
+      .grid.cols-2{ grid-template-columns: repeat(2,minmax(0,1fr)) }
+    }
+    .card{ padding:1rem; border-radius:16px; background: linear-gradient(180deg, #0f1320cc, #0b0e17cc); border:1px solid #ffffff1a; box-shadow: var(--shadow); }
+    .card:hover{ border-color:#ffffff33 }
+    .card h3{ margin:.25rem 0 .5rem; font-size:1.1rem }
+    .card p{ color:var(--muted); margin:0 }
+
+    /* Reveal on scroll */
+    .reveal{ opacity:0; transform: translateY(16px) scale(.98); transition: opacity .6s ease, transform .6s ease }
+    .reveal.show{ opacity:1; transform: none }
+
+    /* Tools: tabs */
+    .tabs{ display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1rem }
+    .tab{
+      padding:.55rem .85rem; border-radius:999px; border:1px solid #ffffff22; background:#ffffff0e; color:#cdd7ff;
+      transition:.2s ease; cursor:pointer; user-select:none;
+    }
+    .tab[aria-selected="true"]{ background: linear-gradient(135deg, #ff6b6b, #ffd166); color:#0b0b0f; border-color:#ffffff55; font-weight:800 }
+    .panel{ display:none }
+    .panel.active{ display:block }
+
+    /* Forms */
+    label{ display:block; font-weight:600; margin:.4rem 0 .3rem }
+    input[type="text"], input[type="number"]{
+      width:100%; padding:.7rem .8rem; border-radius:12px; border:1px solid #ffffff24; background:#0f1220; color:var(--text);
+      outline:none; transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    input:focus{ border-color:var(--ring); box-shadow: 0 0 0 3px #8ab4ff33 }
+    .row{ display:grid; gap:.75rem }
+    @media (min-width:700px){ .row.two{ grid-template-columns:1fr 1fr } }
+    button{
+      appearance:none; border:0; border-radius:12px; padding:.7rem .95rem; font-weight:700; cursor:pointer;
+      background: linear-gradient(135deg, #22d3ee, #a78bfa); color:#0b0b0f; transition:.2s ease; box-shadow: var(--shadow)
+    }
+    button:hover{ transform: translateY(-1px) scale(1.01); filter: brightness(1.05) }
+    button.ghost{ background:#ffffff10; color:var(--text); border:1px solid #ffffff2a }
+    button.warn{ background: linear-gradient(135deg, #ffd166, #f97316) }
+    button.danger{ background: linear-gradient(135deg, #fb7185, #ef4444); color:#fff }
+
+    /* Progress bar */
+    .progress{
+      width:100%; height:12px; border-radius:999px; background:#ffffff14; overflow:hidden; border:1px solid #ffffff22;
+    }
+    .progress .bar{
+      height:100%; width:0%; background: linear-gradient(90deg, #22d3ee, #a78bfa, #ff6b6b);
+      transition: width .7s cubic-bezier(.2,.8,.2,1);
+    }
+
+    /* Chart */
+    canvas.chart{ width:100%; height:180px; display:block; background:#0a0d17; border-radius:12px; border:1px solid #ffffff1a }
+
+    /* List items */
+    .list{ margin:.5rem 0 0; padding:0; list-style:none; display:grid; gap:.5rem }
+    .list li{ display:flex; justify-content:space-between; gap:.75rem; align-items:center; padding:.6rem .7rem; background:#ffffff0b; border:1px solid #ffffff1a; border-radius:12px; }
+    .pill{ padding:.25rem .55rem; border-radius:999px; background:#ffffff12; border:1px solid #ffffff24; font-weight:700; color:#dbe6ff }
+
+    /* Breathing circle */
+    .breath{
+      width:220px; aspect-ratio:1; border-radius:999px; margin:auto; background:
+        radial-gradient(60px 60px at 50% 50%, #ffffff33, transparent),
+        conic-gradient(from 180deg, #22d3ee, #a78bfa, #ff6b6b, #ffd166, #22d3ee);
+      filter: saturate(130%); border:1px solid #ffffff33; box-shadow: inset 0 0 60px #00000066, 0 20px 80px #0000005c;
+      display:grid; place-items:center;
+      transition: transform .8s ease, filter .8s ease;
+    }
+    .breath .label{ font-weight:800; text-shadow: 0 2px 10px #00000066 }
+
+    /* Modal Emergency */
+    .modal{
+      position:fixed; inset:0; display:none; place-items:center; background:#0b0d1377; backdrop-filter: blur(8px) saturate(140%); z-index:999;
+      animation: fadeIn .25s ease forwards;
+    }
+    .modal.active{ display:grid }
+    .modal .content{ width:min(860px, 92vw); padding:1.1rem; }
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+    /* Toast */
+    .toast{
+      position:fixed; bottom:1rem; right:1rem; background:#11151f; border:1px solid #ffffff24; border-radius:12px; padding:.7rem 1rem; box-shadow: var(--shadow);
+      opacity:0; transform: translateY(8px); transition:.3s;
+    }
+    .toast.show{ opacity:1; transform: none }
+
+    /* Confetti */
+    .confetti{
+      position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:998;
+    }
+    .confetti i{
+      position:absolute; width:10px; height:14px; opacity:.9; transform: translateY(-100px) rotate(0deg);
+      animation: drop var(--t) linear forwards;
+      border-radius:3px;
+      filter: saturate(140%);
+      box-shadow: 0 4px 10px #00000066;
+    }
+    @keyframes drop {
+      to { transform: translateY(110vh) rotate(var(--r)); }
+    }
+
+    /* Recipes */
+    .recipe{
+      display:grid; gap:.4rem; padding:1rem; border-radius:14px; border:1px solid #ffffff1a; background: linear-gradient(180deg, #0f1320, #0b0e17);
+      transition:.25s ease; position:relative; overflow:hidden;
+    }
+    .recipe::after{
+      content:""; position:absolute; inset:-50% -10%; background:
+        radial-gradient(200px 80px at var(--mx, 50%) var(--my, 50%), #ffffff11, transparent 60%);
+      transition: .15s ease;
+    }
+    .recipe:hover{ transform: translateY(-2px); border-color:#ffffff33 }
+    .recipe h4{ margin:.2rem 0 .2rem }
+    .recipe small{ color:var(--muted) }
+
+    /* Footer */
+    footer{ margin-top:4rem; padding:2rem 1.25rem 4rem; border-top:1px solid #ffffff1a; color:#bcc6e8; background: linear-gradient(180deg, #0b0d13, transparent) }
+
+    /* Reduced motion respect */
+    @media (prefers-reduced-motion: reduce){
+      .aurora, .orb, .logo{ animation: none }
+      .reveal{ transition:none }
+      button:hover{ transform:none }
+    }
+  </style>
+</head>
+<body>
+  <a href="#conteudo" class="skip-link">Pular para o conteúdo principal</a>
+  <div class="aurora" aria-hidden="true"></div>
+
+  <header role="banner">
+    <nav class="nav" aria-label="Navegação principal">
+      <div class="brand" aria-label="Viva com Menos Açúcar">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Viva com Menos Açúcar</span>
+      </div>
+      <ul>
+        <li><a class="nav-link" href="#inicio">Início</a></li>
+        <li><a class="nav-link" href="#ciencia">Ciência</a></li>
+        <li><a class="nav-link" href="#ferramentas">Ferramentas</a></li>
+        <li><a class="nav-link" href="#receitas">Receitas</a></li>
+        <li><a class="nav-link" href="#recursos">Recursos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section id="inicio" class="hero reveal">
+      <div>
+        <span class="badge">Plano prático • Baseado em evidências</span>
+        <h1 class="title">Apoio real para reduzir a compulsão por açúcar</h1>
+        <p class="subtitle">
+          Ferramentas simples e eficazes para o dia a dia: rastreador de consumo, respiração 4‑7‑8, “surfando a vontade”, plano de emergência e hábitos sustentáveis. Sem julgamentos, com ciência e gentileza.
+        </p>
+        <div class="hero-actions">
+          <a href="#ferramentas" class="cta" aria-label="Ir para as ferramentas">Começar agora</a>
+          <button class="cta ghost" id="open-emergency" aria-haspopup="dialog" aria-controls="modal-emergency">Modo de urgência</button>
+        </div>
+        <div class="hero-card glass" aria-describedby="metricas">
+          <div id="metricas" class="sr-only">Métricas dinâmicas para motivação</div>
+          <div class="hero-metrics">
+            <div class="metric">
+              <div class="v" id="streak-days">0 dias</div>
+              <div class="k">de limite cumprido</div>
+            </div>
+            <div class="metric">
+              <div class="v" id="today-sugar">0 g</div>
+              <div class="k">açúcar hoje</div>
+            </div>
+            <div class="metric">
+              <div class="v" id="limit-grams">25 g</div>
+              <div class="k">meta diária</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="orb" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section id="ciencia" class="reveal">
+      <h2 class="section-title">O que a ciência diz</h2>
+      <p class="section-subtitle">A palavra “vício” para açúcar é debatida, mas há evidências de que padrões de consumo podem envolver circuitos de recompensa similares, além de condicionamento e hábitos. As melhores estratégias unem manejo de estímulos, planejamento e regulação emocional.</p>
+
+      <div class="grid cols-3">
+        <article class="card">
+          <h3>Limite sugerido</h3>
+          <p>Para a maioria dos adultos, reduzir açúcares adicionados para menos de 10% das calorias diárias é recomendado. Metas mais rígidas (ex.: 25 g/dia) podem trazer benefícios adicionais para muitas pessoas.</p>
+          <details style="margin-top:.5rem"><summary>Referências</summary>
+            <ul>
+              <li><a href="https://www.who.int/publications/i/item/9789241549028" target="_blank" rel="noopener">OMS — Diretrizes de ingestão de açúcares</a></li>
+            </ul>
+          </details>
+        </article>
+        <article class="card">
+          <h3>Proteína e fibras</h3>
+          <p>Refeições com proteína e fibras reduzem picos glicêmicos e aumentam saciedade, ajudando a diminuir desejo por doces.</p>
+          <details style="margin-top:.5rem"><summary>Referências</summary>
+            <ul>
+              <li><a href="https://pubmed.ncbi.nlm.nih.gov/23885994/" target="_blank" rel="noopener">Fibra dietética e controle glicêmico</a></li>
+            </ul>
+          </details>
+        </article>
+        <article class="card">
+          <h3>“Surfando a vontade”</h3>
+          <p>As vontades intensas tendem a subir e cair como ondas. Técnicas de atenção plena e temporizadores ajudam a “surfar” a vontade até ela passar.</p>
+          <details style="margin-top:.5rem"><summary>Referências</summary>
+            <ul>
+              <li><a href="https://pubmed.ncbi.nlm.nih.gov/22234930/" target="_blank" rel="noopener">Mindfulness e manejo de craving</a></li>
+            </ul>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section id="ferramentas" class="reveal">
+      <h2 class="section-title">Ferramentas práticas</h2>
+      <p class="section-subtitle">Salvo no seu navegador, sem cadastro. Ajuste metas, acompanhe progresso e tenha um plano para momentos difíceis.</p>
+
+      <div class="tabs" role="tablist" aria-label="Ferramentas">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="tab-tracker" id="tabbtn-tracker">Rastreador diário</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="tab-urge" id="tabbtn-urge">Surfando a vontade</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="tab-breath" id="tabbtn-breath">Respiração 4‑7‑8</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="tab-plan" id="tabbtn-plan">Plano de reposição</button>
+      </div>
+
+       Rastreador 
+      <section id="tab-tracker" class="panel active" role="tabpanel" aria-labelledby="tabbtn-tracker">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Meta diária de açúcar (g)</h3>
+            <p class="section-subtitle">Sugestão inicial: 25 g/dia de açúcares adicionados. Ajuste conforme necessário ou orientação profissional.</p>
+            <div class="row two">
+              <div>
+                <label for="goal-input">Meta (g)</label>
+                <input id="goal-input" type="number" min="5" step="1" value="25" />
+              </div>
+              <div>
+                <label for="goal-save">&nbsp;</label>
+                <button id="goal-save">Definir meta</button>
+              </div>
+            </div>
+            <div style="margin-top:1rem">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.4rem">
+                <strong>Progresso de hoje</strong>
+                <span class="pill"><span id="today-grams">0</span> g / <span id="goal-grams">25</span> g</span>
+              </div>
+              <div class="progress" aria-label="Progresso de açúcar hoje" aria-valuemin="0" aria-valuemax="100" aria-live="polite">
+                <div class="bar" id="progress-bar"></div>
+              </div>
+              <small id="progress-tip" style="color:var(--muted)"></small>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Adicionar consumo de hoje</h3>
+            <div class="row two">
+              <div>
+                <label for="item-name">Alimento/bebida</label>
+                <input id="item-name" type="text" placeholder="Ex.: Refrigerante lata" />
+              </div>
+              <div>
+                <label for="item-grams">Açúcar (g)</label>
+                <input id="item-grams" type="number" min="0" step="1" placeholder="26" />
+              </div>
+            </div>
+            <div style="margin-top:.75rem; display:flex; gap:.5rem; flex-wrap:wrap">
+              <button id="add-item">Adicionar</button>
+              <button class="ghost" id="clear-today">Limpar hoje</button>
+            </div>
+            <ul class="list" id="items-list" aria-live="polite" aria-label="Itens consumidos hoje"></ul>
+          </div>
+
+          <div class="card">
+            <h3>Últimos 7 dias</h3>
+            <canvas id="weekly-chart" class="chart" role="img" aria-label="Gráfico de barras dos últimos 7 dias"></canvas>
+            <small style="color:var(--muted)">Meta diária: <span id="chart-goal">25</span> g • Dica: procure distribuir proteína e fibras ao longo do dia.</small>
+          </div>
+
+          <div class="card">
+            <h3>Vitórias</h3>
+            <ul class="list" id="wins-list">
+              <li><span>Sem açúcar líquido no café da manhã</span> <span class="pill">meta</span></li>
+              <li><span>Água antes do doce</span> <span class="pill">ritual</span></li>
+              <li><span>Lanche com proteína preparado</span> <span class="pill">planejamento</span></li>
+            </ul>
+            <div style="margin-top:.75rem; display:flex; gap:.5rem; flex-wrap:wrap">
+              <button class="ghost" id="add-win">Adicionar vitória</button>
+              <button class="ghost" id="clear-wins">Limpar vitórias</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+       Surfando a vontade 
+      <section id="tab-urge" class="panel" role="tabpanel" aria-labelledby="tabbtn-urge">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Timer de vontade</h3>
+            <p class="section-subtitle">A vontade é como uma onda: cresce, atinge o pico e passa. Escolha um tempo e observe, sem lutar.</p>
+            <div class="row two">
+              <div>
+                <label for="urge-minutes">Minutos</label>
+                <input id="urge-minutes" type="number" min="1" max="20" value="10" />
+              </div>
+              <div style="display:flex; align-items:end; gap:.5rem">
+                <button id="urge-start">Iniciar</button>
+                <button class="ghost" id="urge-stop">Parar</button>
+              </div>
+            </div>
+            <div style="margin-top:.75rem">
+              <div class="progress" aria-label="Progresso do timer">
+                <div class="bar" id="urge-bar"></div>
+              </div>
+              <div style="margin-top:.5rem; display:flex; justify-content:space-between; align-items:center">
+                <strong id="urge-status" aria-live="polite">00:00</strong>
+                <span class="pill" id="urge-tip">Observe sensações → respire</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Estratégias durante a onda</h3>
+            <ul class="list">
+              <li><span>Nomeie a vontade: “Estou notando uma vontade intensa”.</span> <span class="pill">mindfulness</span></li>
+              <li><span>Troque o contexto: 10 passos, água, 10 respirações.</span> <span class="pill">ambiente</span></li>
+              <li><span>Recompensa alternativa: música, alongamento, chá.</span> <span class="pill">alternativa</span></li>
+              <li><span>Visualize a onda passando e você no controle.</span> <span class="pill">visualização</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+       Respiração 
+      <section id="tab-breath" class="panel" role="tabpanel" aria-labelledby="tabbtn-breath">
+        <div class="grid cols-2">
+          <div class="card" style="text-align:center">
+            <h3>Respiração 4‑7‑8</h3>
+            <p class="section-subtitle">Reduz ativação fisiológica e ansiedade, ajudando a atravessar o pico de vontade.</p>
+            <div class="breath" id="breath-circle" aria-live="polite">
+              <div class="label" id="breath-label">Pronto?</div>
+            </div>
+            <div style="margin-top:1rem; display:flex; gap:.5rem; justify-content:center">
+              <button id="breath-start">Começar</button>
+              <button class="ghost" id="breath-stop">Parar</button>
+            </div>
+            <small style="display:block; margin-top:.6rem; color:var(--muted)">Ciclo: inspirar 4s • segurar 7s • expirar 8s (4 repetições)</small>
+          </div>
+          <div class="card">
+            <h3>Dicas</h3>
+            <ul class="list">
+              <li><span>Língua no céu da boca, respiração nasal se possível.</span> <span class="pill">técnica</span></li>
+              <li><span>Expiração longa ativa o sistema parassimpático.</span> <span class="pill">fisiologia</span></li>
+              <li><span>Use antes de decisões alimentares impulsivas.</span> <span class="pill">aplicação</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+       Plano 
+      <section id="tab-plan" class="panel" role="tabpanel" aria-labelledby="tabbtn-plan">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Plano de reposição</h3>
+            <p class="section-subtitle">Substitua pico de açúcar por saciedade real.</p>
+            <div class="row two">
+              <div>
+                <label for="plan-context">Contexto</label>
+                <input id="plan-context" type="text" placeholder="Ex.: tarde no trabalho, pós-almoço..." />
+              </div>
+              <div style="display:flex; align-items:end">
+                <button id="plan-generate">Gerar sugestões</button>
+              </div>
+            </div>
+            <ul class="list" id="plan-list" style="margin-top:.75rem"></ul>
+          </div>
+          <div class="card">
+            <h3>Checklist rápido</h3>
+            <ul class="list" id="checklist">
+              <li><span>Bebi água nos últimos 20 min?</span> <button class="ghost check">Marcar</button></li>
+              <li><span>Comi proteína/fibra nas últimas 3h?</span> <button class="ghost check">Marcar</button></li>
+              <li><span>Dormi pelo menos 7h nas últimas 24h?</span> <button class="ghost check">Marcar</button></li>
+              <li><span>Tenho uma alternativa pronta (iogurte, nozes)?</span> <button class="ghost check">Marcar</button></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="receitas" class="reveal">
+      <h2 class="section-title">Receitas e trocas inteligentes</h2>
+      <p class="section-subtitle">Opções com proteína e fibras para domar a vontade por doce.</p>
+      <div class="grid cols-3" id="recipes">
+        <article class="recipe"><h4>Iogurte grego + frutas + granola sem açúcar</h4><small>Proteína + fibras; doçura natural</small></article>
+        <article class="recipe"><h4>Maçã com pasta de amendoim</h4><small>Gorduras boas + fibras</small></article>
+        <article class="recipe"><h4>Queijo branco com tomate e azeite</h4><small>Proteína + saciedade</small></article>
+        <article class="recipe"><h4>Ovo mexido com aveia salteada</h4><small>Proteína + beta-glucana</small></article>
+        <article class="recipe"><h4>Chá preto/verde com gelo e limão</h4><small>Sem açúcar; ritual substituto</small></article>
+        <article class="recipe"><h4>Banana verde cozida com canela</h4><small>Amido resistente</small></article>
+      </div>
+    </section>
+
+    <section id="recursos" class="reveal">
+      <h2 class="section-title">Recursos confiáveis</h2>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>Diretrizes</h3>
+          <ul>
+            <li><a href="https://www.who.int/publications/i/item/9789241549028" target="_blank" rel="noopener">OMS — Açúcares livres</a></li>
+            <li><a href="https://www.ada.org/resources" target="_blank" rel="noopener">Associações de saúde e nutrição</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Apoio profissional</h3>
+          <p>Este site é educativo e não substitui avaliação individualizada. Procure nutricionista e/ou psicólogo para um plano personalizado, especialmente se houver condições médicas.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div style="max-width:1120px; margin:0 auto">
+      <p><strong>Disclaimer:</strong> Conteúdo informativo. Não substitui aconselhamento médico. Em caso de sofrimento intenso ou perda de controle frequente, procure atendimento profissional.</p>
+      <p style="margin-top:.5rem; color:#9fb0e9">Feito com empatia, ciência e muitas pequenas animações.</p>
+    </div>
+  </footer>
+
+   Modal de Emergência 
+  <div class="modal" id="modal-emergency" role="dialog" aria-modal="true" aria-labelledby="emg-title">
+    <div class="content glass">
+      <div style="display:flex; justify-content:space-between; gap:.5rem; align-items:center">
+        <h3 id="emg-title" style="margin:.2rem 0 0">Modo de urgência (2 minutos)</h3>
+        <button class="ghost" id="close-emergency" aria-label="Fechar">Fechar</button>
+      </div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h4>Passo a passo</h4>
+          <ol style="margin:0; padding-left:1.1rem; color:var(--muted)">
+            <li>Levante e beba um copo de água.</li>
+            <li>Respire 4‑7‑8 por um ciclo.</li>
+            <li>Mude de ambiente (porta, janela, 10 passos).</li>
+            <li>Volte e faça 30 seg de alongamento.</li>
+          </ol>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="breath" id="emg-circle"><div class="label" id="emg-label">02:00</div></div>
+          <div style="margin-top:.75rem; display:flex; gap:.5rem; justify-content:center">
+            <button class="warn" id="emg-start">Iniciar</button>
+            <button class="ghost" id="emg-stop">Parar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   Toast + Confetti 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+  <script>
+    ;(() => {
+      // Utilities
+      const $ = (q, root=document) => root.querySelector(q)
+      const $$ = (q, root=document) => Array.from(root.querySelectorAll(q))
+      const clamp = (n,min,max)=>Math.max(min,Math.min(max,n))
+      const fmt2 = (n)=>String(n).padStart(2,'0')
+      const todayKey = new Date().toISOString().slice(0,10)
+
+      // Local Storage Keys
+      const LS = {
+        GOAL: 'sugar_goal',
+        DAY_PREFIX: 'sugar_day_', // + YYYY-MM-DD
+        WINS: 'sugar_wins',
+        CHECKS: 'sugar_checks'
+      }
+
+      // Toast
+      const toastEl = $('#toast')
+      function toast(msg, timeout=2400){
+        toastEl.textContent = msg
+        toastEl.classList.add('show')
+        setTimeout(()=> toastEl.classList.remove('show'), timeout)
+      }
+
+      // Confetti
+      const confettiRoot = $('#confetti')
+      function confetti(){
+        if (!confettiRoot) return
+        const colors = ['#ff6b6b','#ffd166','#22d3ee','#a78bfa','#39d98a']
+        for(let i=0;i<120;i++){
+          const p = document.createElement('i')
+          const size = 6 + Math.random()*10
+          p.style.left = (Math.random()*100)+'vw'
+          p.style.top = '-20px'
+          p.style.width = size+'px'
+          p.style.height = (size*1.2)+'px'
+          p.style.background = colors[Math.floor(Math.random()*colors.length)]
+          p.style.setProperty('--t', (2.5 + Math.random()*2)+'s')
+          p.style.setProperty('--r', (Math.random()*720-360)+'deg')
+          confettiRoot.appendChild(p)
+          setTimeout(()=> p.remove(), 3200)
+        }
+      }
+
+      // Data accessors
+      function getGoal(){
+        const v = parseInt(localStorage.getItem(LS.GOAL) || '25', 10)
+        return isNaN(v) ? 25 : v
+      }
+      function setGoal(v){
+        localStorage.setItem(LS.GOAL, String(v))
+      }
+      function getDay(key=todayKey){
+        const raw = localStorage.getItem(LS.DAY_PREFIX + key)
+        return raw ? JSON.parse(raw) : []
+      }
+      function setDay(items, key=todayKey){
+        localStorage.setItem(LS.DAY_PREFIX + key, JSON.stringify(items))
+      }
+      function getWins(){
+        const raw = localStorage.getItem(LS.WINS)
+        return raw ? JSON.parse(raw) : []
+      }
+      function setWins(list){
+        localStorage.setItem(LS.WINS, JSON.stringify(list))
+      }
+      function getChecks(){
+        const raw = localStorage.getItem(LS.CHECKS)
+        return raw ? JSON.parse(raw) : [false,false,false,false]
+      }
+      function setChecks(list){ localStorage.setItem(LS.CHECKS, JSON.stringify(list)) }
+
+      // UI Elements
+      const goalInput = $('#goal-input')
+      const goalSave = $('#goal-save')
+      const progressBar = $('#progress-bar')
+      const todayGrams = $('#today-grams')
+      const goalGrams = $('#goal-grams')
+      const limitGramsTop = $('#limit-grams')
+      const todaySugarTop = $('#today-sugar')
+      const progressTip = $('#progress-tip')
+      const itemsList = $('#items-list')
+      const itemName = $('#item-name')
+      const itemGrams = $('#item-grams')
+      const addItemBtn = $('#add-item')
+      const clearTodayBtn = $('#clear-today')
+      const weeklyCanvas = $('#weekly-chart')
+      const chartGoal = $('#chart-goal')
+      const winsList = $('#wins-list')
+      const addWinBtn = $('#add-win')
+      const clearWinsBtn = $('#clear-wins')
+
+      // Metric streak
+      const streakDaysEl = $('#streak-days')
+
+      // Tabs
+      const tabs = $$('.tab')
+      const panels = $$('.panel')
+      tabs.forEach((t, idx)=>{
+        t.addEventListener('click', ()=>{
+          tabs.forEach(b=> b.setAttribute('aria-selected','false'))
+          t.setAttribute('aria-selected','true')
+          panels.forEach(p=> p.classList.remove('active'))
+          $('#'+t.getAttribute('aria-controls')).classList.add('active')
+        })
+      })
+
+      // Tracker Render
+      function sumItems(items){ return items.reduce((a,b)=> a + (parseFloat(b.grams)||0), 0) }
+
+      function renderItems(){
+        const items = getDay()
+        itemsList.innerHTML = ''
+        items.forEach((it, i)=>{
+          const li = document.createElement('li')
+          const left = document.createElement('span')
+          left.textContent = `${it.name} `
+          const grams = document.createElement('span')
+          grams.className = 'pill'
+          grams.textContent = `${it.grams} g`
+          const del = document.createElement('button')
+          del.className = 'ghost danger'
+          del.textContent = 'Remover'
+          del.addEventListener('click', ()=>{
+            const arr = getDay()
+            arr.splice(i,1)
+            setDay(arr)
+            renderAll()
+            toast('Item removido')
+          })
+          li.appendChild(left)
+          li.appendChild(grams)
+          li.appendChild(del)
+          itemsList.appendChild(li)
+        })
+      }
+
+      function computeStreak(goal){
+        // Count consecutive days up to today meeting goal
+        let d = new Date()
+        let count = 0
+        for(let i=0; i<365; i++){
+          const key = d.toISOString().slice(0,10)
+          const items = getDay(key)
+          if (!items.length && i>0) break // break on first gap (except today can be empty and still streak continue?)
+          const total = sumItems(items)
+          if (total <= goal) count++
+          else break
+          d.setDate(d.getDate()-1)
+        }
+        return count
+      }
+
+      function renderProgress(){
+        const goal = getGoal()
+        const items = getDay()
+        const total = sumItems(items)
+        const pct = clamp((total/goal)*100, 0, 100)
+        progressBar.style.width = pct+'%'
+        todayGrams.textContent = Math.round(total)
+        goalGrams.textContent = goal
+        chartGoal.textContent = goal
+        todaySugarTop.textContent = Math.round(total) + ' g'
+        limitGramsTop.textContent = goal + ' g'
+
+        const remain = Math.max(0, goal - total)
+        if (total === 0) {
+          progressTip.textContent = 'Dica: comece registrando o primeiro item — transparência ajuda a ajustar.'
+        } else if (total <= goal) {
+          progressTip.textContent = `Ótimo! Ainda restam ${Math.round(remain)} g hoje. Priorize proteína e água.`
+        } else {
+          progressTip.textContent = `Acima da meta por ${Math.round(total - goal)} g. Tudo bem. Foque no próximo passo, não na perfeição.`
+        }
+
+        const streak = computeStreak(goal)
+        streakDaysEl.textContent = `${streak} ${streak===1?'dia':'dias'}`
+        if (streak>0 && total<=goal && items.length && pct>0 && pct<100){
+          // subtle microcelebration
+          if (streak % 7 === 0) confetti()
+        }
+      }
+
+      function renderChart(){
+        const goal = getGoal()
+        const ctx = weeklyCanvas.getContext('2d')
+        const w = weeklyCanvas.width = weeklyCanvas.clientWidth * devicePixelRatio
+        const h = weeklyCanvas.height = weeklyCanvas.clientHeight * devicePixelRatio
+        ctx.clearRect(0,0,w,h)
+        const days = []
+        const now = new Date()
+        for(let i=6;i>=0;i--){
+          const d = new Date(now); d.setDate(now.getDate()-i)
+          const key = d.toISOString().slice(0,10)
+          const total = sumItems(getDay(key))
+          days.push({label: d.toLocaleDateString('pt-BR', {weekday:'short'}), total})
+        }
+        const max = Math.max(goal*1.4, ...days.map(d=>d.total), 10)
+        // animate bars to target height
+        const pad = 12*devicePixelRatio
+        const gw = (w - pad*2)
+        const bw = gw / (days.length*1.6)
+        let t = 0
+        function frame(){
+          t = clamp(t + 0.06, 0, 1)
+          ctx.clearRect(0,0,w,h)
+          // baseline
+          ctx.strokeStyle = '#ffffff22'
+          ctx.lineWidth = 1*devicePixelRatio
+          ctx.beginPath()
+          ctx.moveTo(pad, h - pad)
+          ctx.lineTo(w - pad, h - pad)
+          ctx.stroke()
+          // goal line
+          const gy = h - pad - (goal/max)*(h - pad*2)
+          ctx.strokeStyle = '#ffd16666'
+          ctx.setLineDash([6*devicePixelRatio, 6*devicePixelRatio])
+          ctx.beginPath(); ctx.moveTo(pad, gy); ctx.lineTo(w - pad, gy); ctx.stroke()
+          ctx.setLineDash([])
+
+          days.forEach((d, i)=>{
+            const x = pad + i * (gw/days.length) + (gw/days.length - bw)/2
+            const target = (d.total/max)*(h - pad*2)
+            const eased = target * (1 - Math.pow(1 - t, 3))
+            const y = h - pad - eased
+            const grad = ctx.createLinearGradient(0,y,0,h-pad)
+            grad.addColorStop(0, '#22d3ee')
+            grad.addColorStop(0.5, '#a78bfa')
+            grad.addColorStop(1, '#ff6b6b')
+            ctx.fillStyle = grad
+            const radius = 8*devicePixelRatio
+            // rounded bar
+            const bh = Math.max(6*devicePixelRatio, eased)
+            roundRect(ctx, x, h - pad - bh, bw, bh, radius)
+            ctx.fill()
+            // label
+            ctx.fillStyle = '#cdd7ff'
+            ctx.font = `${12*devicePixelRatio}px system-ui, sans-serif`
+            ctx.textAlign='center'
+            ctx.fillText(d.label, x + bw/2, h - pad/2)
+          })
+          if (t<1) requestAnimationFrame(frame)
+        }
+        requestAnimationFrame(frame)
+
+        function roundRect(ctx, x, y, w, h, r){
+          r = Math.min(r, w/2, h/2)
+          ctx.beginPath()
+          ctx.moveTo(x+r, y)
+          ctx.arcTo(x+w, y, x+w, y+h, r)
+          ctx.arcTo(x+w, y+h, x, y+h, r)
+          ctx.arcTo(x, y+h, x, y, r)
+          ctx.arcTo(x, y, x+w, y, r)
+          ctx.closePath()
+        }
+      }
+
+      function renderWins(){
+        const items = getWins()
+        // Keep the first 3 defaults intact if no custom wins stored
+        if (items.length === 0) return
+        winsList.innerHTML = ''
+        items.forEach((text, i)=>{
+          const li = document.createElement('li')
+          li.innerHTML = `<span>${text}</span>`
+          const del = document.createElement('button')
+          del.className = 'ghost'
+          del.textContent = 'Remover'
+          del.addEventListener('click', ()=>{
+            const arr = getWins()
+            arr.splice(i,1)
+            setWins(arr)
+            renderWins()
+          })
+          li.appendChild(del)
+          winsList.appendChild(li)
+        })
+      }
+
+      function renderAll(){
+        goalInput.value = String(getGoal())
+        renderItems()
+        renderProgress()
+        renderChart()
+        renderWins()
+      }
+
+      // Events: Tracker
+      goalSave.addEventListener('click', ()=>{
+        const v = clamp(parseInt(goalInput.value||'25',10) || 25, 5, 200)
+        setGoal(v)
+        toast('Meta atualizada para '+v+' g')
+        renderAll()
+      })
+
+      addItemBtn.addEventListener('click', ()=>{
+        const name = (itemName.value||'Alimento').trim()
+        const grams = clamp(parseInt(itemGrams.value||'0',10)||0, 0, 500)
+        if (!grams){ toast('Informe os gramas de açúcar'); return }
+        const items = getDay()
+        items.push({name, grams})
+        setDay(items)
+        itemName.value = ''
+        itemGrams.value = ''
+        renderAll()
+        toast('Item adicionado')
+      })
+
+      clearTodayBtn.addEventListener('click', ()=>{
+        setDay([])
+        renderAll()
+        toast('Consumo de hoje limpo')
+      })
+
+      addWinBtn.addEventListener('click', ()=>{
+        const text = prompt('Descreva uma pequena vitória de hoje:')
+        if (!text) return
+        const arr = getWins()
+        arr.unshift(text.trim())
+        setWins(arr.slice(0,30))
+        renderWins()
+        toast('Vitória registrada')
+      })
+      clearWinsBtn.addEventListener('click', ()=>{
+        localStorage.removeItem(LS.WINS)
+        renderWins()
+        toast('Vitórias limpas')
+      })
+
+      // Urge Timer
+      const urgeStart = $('#urge-start')
+      const urgeStop = $('#urge-stop')
+      const urgeBar = $('#urge-bar')
+      const urgeStatus = $('#urge-status')
+      const urgeMinutes = $('#urge-minutes')
+      const urgeTips = [
+        'Observe onde sente no corpo.',
+        'Nomeie a vontade sem julgamentos.',
+        'Traga curiosidade para a sensação.',
+        'Alongue pescoço e ombros.',
+        'Respire pelo nariz, solte pela boca.'
+      ]
+      let urgeTimer = null, urgeStartTime=0, urgeDur=0
+      function updateUrge(){
+        const elapsed = (Date.now()-urgeStartTime)/1000
+        const pct = clamp(elapsed/urgeDur*100, 0, 100)
+        urgeBar.style.width = pct+'%'
+        const remain = Math.max(0, Math.ceil(urgeDur - elapsed))
+        const m = Math.floor(remain/60), s = remain%60
+        urgeStatus.textContent = `${fmt2(m)}:${fmt2(s)}`
+        $('#urge-tip').textContent = urgeTips[Math.floor((elapsed/urgeDur)*urgeTips.length)] || 'Ótimo trabalho'
+        if (remain<=0){
+          clearInterval(urgeTimer); urgeTimer=null
+          toast('A onda passou. Você conseguiu!')
+          confetti()
+        }
+      }
+      urgeStart.addEventListener('click', ()=>{
+        const mins = clamp(parseInt(urgeMinutes.value||'10',10)||10,1,20)
+        urgeDur = mins*60
+        urgeStartTime = Date.now()
+        clearInterval(urgeTimer)
+        urgeTimer = setInterval(updateUrge, 200)
+        updateUrge()
+      })
+      urgeStop.addEventListener('click', ()=>{ clearInterval(urgeTimer); urgeTimer=null; urgeBar.style.width='0%'; urgeStatus.textContent='00:00' })
+
+      // Breathing 4-7-8
+      const breathCircle = $('#breath-circle')
+      const breathLabel = $('#breath-label')
+      const breathStart = $('#breath-start')
+      const breathStop = $('#breath-stop')
+      let breathLoop = null, breathPhase = 0, cycles = 0
+      function runBreath(){
+        const phases = [
+          {name:'Inspire', secs:4, scale:1.05},
+          {name:'Segure', secs:7, scale:1.1},
+          {name:'Expire', secs:8, scale:.9},
+        ]
+        const p = phases[breathPhase]
+        breathLabel.textContent = p.name
+        breathCircle.style.transform = `scale(${p.scale})`
+        breathCircle.style.filter = p.name==='Expire' ? 'saturate(150%) brightness(1.05)' : 'saturate(130%)'
+        breathLoop = setTimeout(()=>{
+          breathPhase = (breathPhase+1)%phases.length
+          if (breathPhase===0){ cycles++; if (cycles>=4){ stopBreath(); toast('Respiração concluída'); return } }
+          runBreath()
+        }, p.secs*1000)
+      }
+      function stopBreath(){
+        clearTimeout(breathLoop); breathLoop=null; breathPhase=0; cycles=0
+        breathLabel.textContent = 'Pronto?'
+        breathCircle.style.transform = 'scale(1)'
+        breathCircle.style.filter = 'none'
+      }
+      breathStart.addEventListener('click', ()=>{ if (breathLoop) return; runBreath() })
+      breathStop.addEventListener('click', stopBreath)
+
+      // Emergency Modal
+      const openEmg = $('#open-emergency')
+      const closeEmg = $('#close-emergency')
+      const modalEmg = $('#modal-emergency')
+      const emgStart = $('#emg-start')
+      const emgStop = $('#emg-stop')
+      const emgCircle = $('#emg-circle')
+      const emgLabel = $('#emg-label')
+      let emgTimer=null, emgEnd=0
+      openEmg.addEventListener('click', ()=>{ modalEmg.classList.add('active'); emgLabel.textContent='02:00' })
+      closeEmg.addEventListener('click', ()=>{ modalEmg.classList.remove('active'); clearInterval(emgTimer) })
+      function tickEmg(){
+        const remain = Math.max(0, Math.ceil((emgEnd - Date.now())/1000))
+        const m = Math.floor(remain/60), s = remain%60
+        emgLabel.textContent = `${fmt2(m)}:${fmt2(s)}`
+        const pct = (120 - remain)/120 * 0.2 + 0.9
+        emgCircle.style.transform = `scale(${pct})`
+        if (remain<=0){ clearInterval(emgTimer); toast('Parabéns — você atravessou o pico.'); confetti() }
+      }
+      emgStart.addEventListener('click', ()=>{ emgEnd = Date.now() + 120*1000; clearInterval(emgTimer); emgTimer=setInterval(tickEmg, 200); tickEmg() })
+      emgStop.addEventListener('click', ()=>{ clearInterval(emgTimer); emgCircle.style.transform='scale(1)'; emgLabel.textContent='02:00' })
+      modalEmg.addEventListener('click', (e)=>{ if (e.target === modalEmg) closeEmg.click() })
+
+      // Plan suggestions
+      const planList = $('#plan-list')
+      const planGenerate = $('#plan-generate')
+      const planContext = $('#plan-context')
+      const suggestions = [
+        {t:'Proteína', d:'Iogurte natural/ovo/queijo branco; 15–25 g de proteína.'},
+        {t:'Fibra', d:'Fruta inteira/aveia/sementes (chia/linhaça).'},
+        {t:'Hidratação', d:'Copo grande de água/água com gás + limão.'},
+        {t:'Ambiente', d:'Doces fora da vista; troque por frutas/nozes à mão.'},
+        {t:'Rotina', d:'Lanche pré-planejado 3h após a última refeição.'},
+        {t:'Sono', d:'Meta de 7–8h; evitar telas 1h antes de dormir.'},
+      ]
+      planGenerate.addEventListener('click', ()=>{
+        const ctx = planContext.value.trim()
+        planList.innerHTML = ''
+        const pool = [...suggestions].sort(()=>Math.random()-0.5).slice(0,4)
+        pool.forEach(s=>{
+          const li = document.createElement('li')
+          li.innerHTML = `<span><strong>${s.t}:</strong> ${s.d}${ctx?` — (pensando em: ${ctx})`:''}</span>`
+          const b = document.createElement('button'); b.className='ghost'; b.textContent='Salvar'
+          b.addEventListener('click', ()=> { toast('Adicionado ao seu plano do dia') })
+          li.appendChild(b)
+          planList.appendChild(li)
+        })
+      })
+
+      // Checklist
+      const checklist = $('#checklist')
+      function renderChecks(){
+        const checks = getChecks()
+        $$('#checklist .check').forEach((btn, i)=>{
+          btn.textContent = checks[i] ? 'Feito' : 'Marcar'
+          btn.classList.toggle('warn', !checks[i])
+          btn.classList.toggle('ghost', checks[i])
+        })
+      }
+      checklist.addEventListener('click', (e)=>{
+        const el = e.target
+        if (el.classList.contains('check')){
+          const idx = $$('#checklist .check').indexOf(el)
+          const checks = getChecks()
+          checks[idx] = !checks[idx]
+          setChecks(checks)
+          renderChecks()
+        }
+      })
+
+      // Recipes hover light
+      $('#recipes').addEventListener('mousemove', (e)=>{
+        if (!e.target.closest('.recipe')) return
+        $$('.recipe').forEach(card=>{
+          const rect = card.getBoundingClientRect()
+          const mx = ((e.clientX - rect.left)/rect.width)*100
+          const my = ((e.clientY - rect.top)/rect.height)*100
+          card.style.setProperty('--mx', mx+'%')
+          card.style.setProperty('--my', my+'%')
+        })
+      })
+
+      // Reveal on scroll
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(ent=>{
+          if (ent.isIntersecting) ent.target.classList.add('show')
+        })
+      }, { rootMargin: '0px 0px -10% 0px', threshold:.1 })
+      $$('.reveal').forEach(el=> io.observe(el))
+
+      // Init
+      function init(){
+        goalInput.value = String(getGoal())
+        goalGrams.textContent = String(getGoal())
+        chartGoal.textContent = String(getGoal())
+        renderAll()
+        renderChecks()
+      }
+      init()
+
+      // Resize chart on window size change
+      window.addEventListener('resize', ()=>{ renderChart() })
+    })()
+  </script>
+</body>
+</html>
