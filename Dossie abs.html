@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIÊ: ANATOMIA DO ABUSO</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📂</text></svg>">
+
+    <style>
+        /* --- [ CSS HIPER-MAXIMALISTA V4 ] --- */
+        :root {
+            --font-display: 'Roboto Condensed', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-mono: 'Source Code Pro', monospace;
+            
+            /* TEMA ESCURO (PADRÃO) */
+            --bg-grad-1: #000000;
+            --bg-grad-2: #020024;
+            --bg-grad-3: #1d0f33;
+            --bg-grad-4: #082d27;
+            --card-bg: rgba(10, 10, 15, 0.7);
+            --text-color: #b3b3b3;
+            --heading-color: #f0f0f0;
+            --accent-color: #ff1e56; /* Vermelho-rosado neon */
+            --accent-2-color: #00f2ea; /* Ciano neon */
+            --border-color: rgba(255, 255, 255, 0.15);
+            --shadow-color: rgba(0, 0, 0, 0.7);
+        }
+        [data-theme="light"] {
+            --bg-grad-1: #ffffff;
+            --bg-grad-2: #f7f3ff;
+            --bg-grad-3: #e2e1ff;
+            --bg-grad-4: #d6fffa;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --text-color: #212121;
+            --heading-color: #000000;
+            --accent-color: #d90429;
+            --accent-2-color: #0077b6;
+            --border-color: rgba(0, 0, 0, 0.15);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        @keyframes animated-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        body {
+            font-family: var(--font-serif);
+            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3), var(--bg-grad-4));
+            background-size: 400% 400%;
+            animation: animated-gradient 20s ease infinite;
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        body::after { /* Camada de ruído */
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-noise.png');
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+        .reveal { opacity: 0; transition: opacity 1s ease-out; }
+        .reveal.visible { opacity: 1; }
+
+        /* --- Cabeçalho --- */
+        header {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 2rem; position: relative;
+        }
+        header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 18vw, 15rem);
+            color: var(--heading-color);
+            line-height: 1;
+            text-transform: uppercase;
+            text-shadow: 0 0 40px var(--shadow-color);
+            letter-spacing: -5px;
+        }
+        header h1 span { color: var(--accent-color); font-style: italic; }
+        header .slogan {
+            font-family: var(--font-mono);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-color);
+            margin-top: 2rem;
+            max-width: 600px;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+        }
+        #theme-switcher {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            font-size: 1.5rem; width: 50px; height: 50px;
+            border-radius: 50%; cursor: pointer; z-index: 1000;
+            backdrop-filter: blur(20px); transition: all 0.3s ease;
+        }
+        #theme-switcher:hover { transform: scale(1.1) rotate(15deg); }
+
+        /* --- Estrutura das Seções --- */
+        .section-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 6rem;
+        }
+        .section-title-vertical {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 6rem);
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-align: right;
+            line-height: 0.8;
+            color: var(--border-color);
+            justify-self: center;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0; /* Bordas retas para o estilo "dossiê" */
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            box-shadow: 0 20px 50px var(--shadow-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .card h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            text-align: left;
+            margin-bottom: 2rem;
+            color: var(--heading-color);
+            text-transform: uppercase;
+        }
+        .card h2 span { color: var(--accent-2-color); }
+        .card h3 { font-family: var(--font-display); color: var(--heading-color); text-transform: uppercase; font-size: 1.5rem; margin-bottom: 1rem; }
+
+        /* --- Quiz --- */
+        .question { border-left: 3px solid var(--accent-color); padding-left: 1rem; margin-bottom: 1.5rem; }
+        .question p { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color); }
+        .cta-button {
+            display: block; width: 100%; padding: 1rem;
+            background: var(--accent-color); color: white;
+            border: none; font-family: var(--font-display);
+            font-size: 1.5rem; text-transform: uppercase;
+            cursor: pointer; transition: all 0.3s ease; letter-spacing: 3px;
+        }
+        .cta-button:hover { background: var(--heading-color); color: var(--bg-grad-1); }
+
+        /* --- Seção de Direitos --- */
+        .law-card {
+            border: 1px solid var(--border-color);
+            padding: 1.5rem; margin-bottom: 1rem;
+        }
+        .law-card h4 {
+            font-family: var(--font-display); color: var(--accent-2-color);
+            font-size: 1.3rem; letter-spacing: 1px;
+        }
+        .law-card .ref { font-family: var(--font-mono); color: var(--accent-color); }
+
+        /* --- Ciclo da Violência --- */
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .cycle-container { position: relative; width: 350px; height: 350px; margin: 2rem auto; }
+        .cycle-ring {
+            width: 100%; height: 100%; border-radius: 50%;
+            border: 2px dashed var(--border-color);
+            animation: spin 60s linear infinite;
+        }
+        .cycle-phase {
+            position: absolute; width: 100px; height: 100px;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            text-align: center; font-family: var(--font-display);
+            font-size: 1rem; text-transform: uppercase; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cycle-phase:hover { transform: scale(1.1); border-color: var(--accent-2-color); z-index: 10; }
+        #phase-1 { top: -50px; left: 125px; }
+        #phase-2 { top: 125px; right: -50px; }
+        #phase-3 { bottom: -50px; left: 125px; }
+        #phase-4 { top: 125px; left: -50px; }
+        #cycle-info {
+            margin-top: 2rem; padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            min-height: 100px;
+        }
+        
+        /* --- Glossário --- */
+        .glossary-term {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .glossary-term strong {
+            font-family: var(--font-mono);
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-wrapper { grid-template-columns: 1fr; }
+            .section-title-vertical { writing-mode: horizontal-tb; transform: none; text-align: left; font-size: 3rem; margin-bottom: 1rem; }
+            .cycle-container { transform: scale(0.8); }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="theme-switcher" title="Mudar tema">💡</button>
+
+    <header>
+        <h1>Dossiê<span>:</span><br>Abuso</h1>
+        <p class="slogan reveal">[ARQUIVO CONFIDENCIAL] Uma análise profunda das táticas de manipulação e controle. Informação é a primeira arma de defesa.</p>
+    </header>
+    
+    <main>
+        <div class="section-wrapper container">
+            <h2 class="section-title-vertical reveal">Diagnóstico</h2>
+            <div class="card reveal">
+                <h2>TERMÔMETRO<span>_</span>INTERNO</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Confidencial. Anônimo. Para seus olhos, apenas. Responda às seguintes perguntas. Sem filtros. A verdade é um território desconfortável, mas necessário.</p>
+                <form id="harassment-quiz">
+                    <div class="question"><p>1. A presença dessa pessoa drena sua energia ou te deixa em estado de alerta constante?</p><label><input type="radio" name="q1" value="sim" required> Sim</label><label><input type="radio" name="q1" value="nao"> Não</label></div>
+                    <div class="question"><p>2. "Piadas" depreciativas são usadas como arma, e se você reage, é acusado(a) de "não ter senso de humor"?</p><label><input type="radio" name="q2" value="sim" required> Sim</label><label><input type="radio" name="q2" value="nao"> Não</label></div>
+                    <div class="question"><p>3. O contato físico acontece nos termos dele(a), ignorando sua linguagem corporal ou recusa verbal?</p><label><input type="radio" name="q3" value="sim" required> Sim</label><label><input type="radio" name="q3" value="nao"> Não</label></div>
+                    <div class="question"><p>4. Seus "nãos" são vistos como um desafio, e não como um limite, gerando pressão ou punição?</p><label><input type="radio" name="q4" value="sim" required> Sim</label><label><input type="radio" name="q4" value="nao"> Não</label></div>
+                    <div class="question"><p>5. Você é criticado(a) ou desvalorizado(a) em público, minando sua credibilidade ou imagem?</p><label><input type="radio" name="q5" value="sim" required> Sim</label><label><input type="radio" name="q5" value="nao"> Não</label></div>
+                    <div class="question"><p>6. Suas decisões, amizades ou até mesmo suas senhas são monitoradas ou questionadas constantemente?</p><label><input type="radio" name="q6" value="sim" required> Sim</label><label><input type="radio" name="q6" value="nao"> Não</label></div>
+                    <div class="question"><p>7. Você percebe um esforço deliberado para te afastar de amigos e familiares que te apoiam?</p><label><input type="radio" name="q7" value="sim" required> Sim</label><label><input type="radio" name="q7" value="nao"> Não</label></div>
+                    <div class="question"><p>8. Ele(a) nega ou distorce fatos que acabaram de acontecer, fazendo você questionar sua própria sanidade?</p><label><input type="radio" name="q8" value="sim" required> Sim</label><label><input type="radio" name="q8" value="nao"> Não</label></div>
+                    <div class="question"><p>9. O medo do que ele(a) possa fazer ou dizer te impede de ser você mesmo(a) ou de buscar ajuda?</p><label><input type="radio" name="q9" value="sim" required> Sim</label><label><input type="radio" name="q9" value="nao"> Não</label></div>
+                    <button type="submit" class="cta-button">Processar Análise</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="result-container" class="container" style="display: none;"></div>
+        
+        <div class="section-wrapper container">
+            <h2 class="section-title-vertical reveal">Ciclo</h2>
+            <div class="card reveal">
+                <h2>O CICLO DA <span>VIOLÊNCIA</span></h2>
+                <p>O abuso raramente é constante. Ele opera em um ciclo projetado para confundir, prender e exaurir a vítima. Reconhecer as fases é o primeiro passo para planejar a fuga. Clique em cada fase para entender.</p>
+                <div class="cycle-container">
+                    <div class="cycle-ring"></div>
+                    <div class="cycle-phase" id="phase-1" data-title="FASE 1: Aumento da Tensão" data-text="O agressor torna-se irritadiço, impaciente e encontra falhas em tudo. A vítima sente a necessidade de 'pisar em ovos' para evitar uma explosão. O medo e a ansiedade começam a crescer.">Tensão</div>
+                    <div class="cycle-phase" id="phase-2" data-title="FASE 2: Incidente de Abuso" data-text="A tensão acumulada explode em um incidente de abuso verbal, emocional, psicológico ou físico. É o ato agudo de violência que humilha e fere a vítima.">Explosão</div>
+                    <div class="cycle-phase" id="phase-3" data-title="FASE 3: Reconciliação / Lua de Mel" data-text="O agressor mostra arrependimento, pede desculpas, faz promessas de mudança, dá presentes. Essa fase de 'love bombing' gera esperança na vítima e a prende ainda mais ao ciclo.">Lua de Mel</div>
+                    <div class="cycle-phase" id="phase-4" data-title="FASE 4: Calmaria" data-text="O comportamento abusivo cessa temporariamente. O relacionamento parece normal e pacífico. Esta fase de calma reforça a negação da vítima e a faz acreditar que a 'lua de mel' pode ser permanente. Mas a tensão inevitavelmente volta a crescer.">Calmaria</div>
+                </div>
+                <div id="cycle-info">
+                    <h3>Selecione uma fase do ciclo</h3>
+                    <p>Passe o mouse ou clique em uma das fases acima para ver a descrição detalhada.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-wrapper container">
+             <h2 class="section-title-vertical reveal">Táticas</h2>
+            <div class="card reveal">
+                 <h2>GLOSSÁRIO DO <span>ABUSO</span></h2>
+                 <p>Manipuladores usam um playbook. Conhecer suas táticas desarma o poder delas. Aqui estão alguns termos que você precisa conhecer.</p>
+                 <div class="glossary-term"><strong>Gaslighting:</strong> Manipular a vítima para que ela duvide de sua própria memória, percepção ou sanidade. Frases como "Você está louca(o)" ou "Isso nunca aconteceu" são comuns.</div>
+                 <div class="glossary-term"><strong>Love Bombing:</strong> Excesso de atenção, afeto e presentes no início de um relacionamento para criar uma dependência emocional rápida. É a isca.</div>
+                 <div class="glossary-term"><strong>Hoovering:</strong> "Aspirar" a vítima de volta para o relacionamento após um descarte ou afastamento, usando promessas, chantagem emocional ou falsas crises.</div>
+                 <div class="glossary-term"><strong>Triangulação:</strong> Introduzir uma terceira pessoa na dinâmica (um ex, um amigo, um colega) para criar ciúmes, competição e insegurança na vítima.</div>
+                 <div class="glossary-term"><strong>Descarte (Discard):</strong> O abandono súbito e cruel da vítima, geralmente quando ela não tem mais utilidade ou quando o abusador encontra uma nova fonte de suprimento.</div>
+                 <div class="glossary-term"><strong>Vítima-culpabilização (Victim Blaming):</strong> Inverter a situação para que a vítima se sinta culpada pelo abuso que sofreu. "Você me provocou" é a frase clássica.</div>
+            </div>
+        </div>
+
+        <div class="section-wrapper container">
+            <h2 class="section-title-vertical reveal">Leis</h2>
+            <div class="card reveal">
+                <h2>SEUS DIREITOS NO <span>BRASIL</span></h2>
+                <p>O abuso não é apenas imoral, em muitos casos, é ilegal. Conheça as leis que te protegem. Informação jurídica é poder.</p>
+                <div class="law-card">
+                    <h4>Stalking / Perseguição</h4>
+                    <p>Perseguir alguém, reiteradamente e por qualquer meio, ameaçando-lhe a integridade física ou psicológica, restringindo-lhe a capacidade de locomoção ou, de qualquer forma, invadindo ou perturbando sua esfera de liberdade ou privacidade.</p>
+                    <p class="ref">Art. 147-A do Código Penal. Pena: reclusão, de 6 meses a 2 anos, e multa.</p>
+                </div>
+                <div class="law-card">
+                    <h4>Violência Psicológica Contra a Mulher</h4>
+                    <p>Causar dano emocional à mulher que a prejudique e perturbe seu pleno desenvolvimento ou que vise a degradar ou a controlar suas ações, comportamentos, crenças e decisões, mediante ameaça, constrangimento, humilhação, manipulação, etc.</p>
+                    <p class="ref">Lei nº 14.188/2021 (Lei Maria da Penha). Pena: reclusão, de 6 meses a 2 anos, e multa.</p>
+                </div>
+                <div class="law-card">
+                    <h4>Assédio Sexual</h4>
+                    <p>Constranger alguém com o intuito de obter vantagem ou favorecimento sexual, prevalecendo-se o agente da sua condição de superior hierárquico ou ascendência inerentes ao exercício de emprego, cargo ou função.</p>
+                    <p class="ref">Art. 216-A do Código Penal. Pena: detenção, de 1 a 2 anos.</p>
+                </div>
+                 <div class="law-card">
+                    <h4>Assédio Moral no Trabalho</h4>
+                    <p>Embora não seja um crime único no Código Penal Federal, o assédio moral é reconhecido pela Justiça do Trabalho e pode gerar processos por danos morais, rescisão indireta do contrato de trabalho e ações cíveis. Consiste na exposição a situações humilhantes e constrangedoras de forma repetitiva.</p>
+                    <p class="ref">Constituição Federal, Código Civil e jurisprudência trabalhista.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-wrapper container">
+            <h2 class="section-title-vertical reveal">Ação</h2>
+            <div class="card reveal">
+                <h2>GUIA DE <span>CONTRA-ATAQUE</span></h2>
+                <h3>Como Coletar Provas Digitais de Forma Segura:</h3>
+                <p><strong>1. Backup na Nuvem Externa:</strong> Crie um e-mail e uma conta em um serviço de nuvem (Google Drive, Dropbox) que o agressor NÃO conheça. Envie prints de conversas, áudios e e-mails para lá. Apague os originais do seu celular se houver risco de ser descoberto(a).</p>
+                <p><strong>2. Não Anuncie sua Investigação:</strong> Jamais confronte o agressor com as provas que você está coletando. Isso pode escalonar a violência e dar a ele a chance de apagar os rastros.</p>
+                <p><strong>3. Ata Notarial:</strong> Para provas mais robustas (como postagens em redes sociais), considere ir a um cartório e solicitar uma Ata Notarial. Ela confere fé pública ao conteúdo digital, tornando-o uma prova mais forte em um processo.</p>
+                <p><strong>4. Procure Ajuda Legal e Psicológica:</strong> Os links abaixo são seu próximo passo. Profissionais podem te orientar sobre como usar as provas e como se proteger emocionalmente.</p>
+                <h3 style="margin-top: 2rem;">Canais de Apoio e Denúncia:</h3>
+                <ul>
+                    <li><strong>Ligue 180 - Central de Atendimento à Mulher:</strong> 24h, confidencial. Orienta e encaminha para serviços de proteção.</li>
+                    <li><strong>Ligue 188 - CVV (Centro de Valorização da Vida):</strong> Apoio emocional gratuito e sigiloso para momentos de crise.</li>
+                    <li><strong>Projeto Justiceiras:</strong> Oferece acolhimento e orientação jurídica, médica e psicológica gratuita para mulheres em situação de violência.</li>
+                    <li><strong>Instituto Maria da Penha (IMP):</strong> Referência na luta contra a violência doméstica e familiar.</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const themeSwitcher = document.getElementById('theme-switcher');
+            const html = document.documentElement;
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', currentTheme);
+            themeSwitcher.innerText = currentTheme === 'dark' ? '☀️' : '🌙';
+            themeSwitcher.addEventListener('click', () => {
+                const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeSwitcher.innerText = newTheme === 'dark' ? '☀️' : '🌙';
+            });
+
+            const quizForm = document.getElementById('harassment-quiz');
+            const resultContainer = document.getElementById('result-container');
+            quizForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                let score = 0;
+                for (let i = 1; i <= 9; i++) {
+                    if (quizForm.querySelector(`input[name="q${i}"]:checked`)?.value === 'sim') score++;
+                }
+                displayResult(score);
+            });
+
+            function displayResult(score) {
+                let resultHTML = '';
+                let levelClass = '';
+                if (score === 0) {
+                    resultHTML = `<div class="card"><h2 style="color: var(--safe-color);">PAINEL: SEGURO</h2><p>Análise indica ausência de táticas de abuso. Continue cultivando relações com limites claros e respeito mútuo.</p></div>`;
+                } else if (score >= 1 && score <= 4) {
+                    resultHTML = `<div class="card"><h2 style="color: var(--warn-color);">PAINEL: INFILTRAÇÃO DETECTADA</h2><p>Com <strong>${score}</strong> bandeiras vermelhas, o sistema identifica táticas de manipulação e controle em andamento. Não é 'só o jeito dele(a)'. É uma erosão calculada do seu bem-estar. Reavalie as seções deste dossiê. Este é o momento de reforçar suas defesas.</p></div>`;
+                } else {
+                    resultHTML = `<div class="card"><h2 style="color: var(--accent-color);">PAINEL: VIOLAÇÃO DE PROTOCOLO</h2><p>Com <strong>${score}</strong> ou mais respostas afirmativas, o diagnóstico é inequívoco: você está sob um ataque psicológico sistemático. O padrão é claro, perigoso e destrutivo. A culpa não é sua. A responsabilidade por parar isso, agora, é. Use as informações deste dossiê. Peça ajuda. AGORA.</p></div>`;
+                }
+                resultContainer.innerHTML = resultHTML;
+                resultContainer.style.display = 'block';
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // --- Lógica do Ciclo da Violência ---
+            const cyclePhases = document.querySelectorAll('.cycle-phase');
+            const cycleInfoBox = document.getElementById('cycle-info');
+            cyclePhases.forEach(phase => {
+                phase.addEventListener('click', () => {
+                    const title = phase.dataset.title;
+                    const text = phase.dataset.text;
+                    cycleInfoBox.innerHTML = `<h3>${title}</h3><p>${text}</p>`;
+                });
+            });
+
+            // --- Animação de Scroll ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
